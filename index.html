@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aqualen Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.3);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"SF Pro",sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: var(--text);
+    }
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width .18s ease-out;
+    }
+    nav a:hover::after { width: 100%; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0,3fr) minmax(0,2.4fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: minmax(0,1fr); }
+      header { flex-direction: column; align-items: flex-start; }
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      margin: 0 0 12px;
+    }
+    .hero-main span {
+      color: var(--accent);
+    }
+    .hero-sub {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 36rem;
+      margin-bottom: 24px;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(120deg, #22c1c3, #38bdf8, #6366f1);
+      border: none;
+      color: #0b1120;
+      font-weight: 600;
+    }
+    .btn span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    .meta-line {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: radial-gradient(circle at top, rgba(56,189,248,.12) 0, rgba(15,23,42,1) 45%);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .panel-inner {
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,.2);
+      padding: 16px 16px 14px;
+      background: linear-gradient(145deg,#020617,#020617 30%,#020617 60%,rgba(15,23,42,1));
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,1);
+      border: 1px solid rgba(148,163,184,.4);
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 16px 18px 15px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    footer {
+      border-top: 1px solid rgba(31,41,55,.9);
+      padding-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="logo">Aqualen Studio</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="badge">
+          <span class="dot"></span> INDEPENDENT GAME & WORLD BUILDER
+        </div>
+        <h1>
+          Crafting <span>oceans</span>, ruins and stories<br />
+          for the next wave of players.
+        </h1>
+        <p class="hero-sub">
+          Aqualen Studio 专注于海洋题材、潜水探索和意识流叙事的独立游戏与互动体验。
+          从一台潜水灯，到一片废墟海城，我们慢工、深潜、精修。
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:contact@aqualen.studio">
+            Talk to the studio →
+          </a>
+          <a class="btn" href="#projects">
+            View concept projects
+          </a>
+        </div>
+        <div class="meta-line">
+          AQUALEN.STUDIO · JOYTOART / KOI DASH · BUILT WITH UE & AI-ASSISTED TOOLS
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-inner">
+          <div class="tag-row">
+            <span class="pill">Ocean exploration</span>
+            <span class="pill">Unreal Engine</span>
+            <span class="pill">Indie studio</span>
+            <span class="pill">Narrative design</span>
+          </div>
+          <p style="font-size:13px;color:#e5e7eb;line-height:1.7;margin:0 0 10px;">
+            Current focus:
+            building a first-person diving open-world prototype —
+            blending salvage gameplay, deep-sea ruins and
+            quiet, meditative moments under water.
+          </p>
+          <p style="font-size:12px;color:#9ca3af;margin:0;">
+            Now preparing studio identity, core game prototype, and
+            production pipeline that connects UE, AI tools and a remote-friendly workflow.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" class="grid">
+      <article class="card">
+        <h3>01 · Diving Open World Prototype</h3>
+        <p>
+          UE-based first-person diving game. Salvage wrecks, decode black boxes,
+          and unravel what reshaped the continent under the sea.
+        </p>
+      </article>
+      <article class="card">
+        <h3>02 · IP & Worldbuilding</h3>
+        <p>
+          Building a long-term world bible: factions, tech, myths and
+          locations that connect different games, comics and interactive stories.
+        </p>
+      </article>
+      <article class="card">
+        <h3>03 · Tools & Pipeline</h3>
+        <p>
+          Experimenting with AI-assisted concept art, narrative tools and
+          procedural level design, to keep a tiny team shipping ambitious worlds.
+        </p>
+      </article>
+    </section>
+
+    <section id="about" class="grid">
+      <article class="card">
+        <h3>About Aqualen Studio</h3>
+        <p>
+          Founded by an independent game developer with years of experience in art,
+          combat system design and worldbuilding. Aqualen Studio is currently
+          based in Cyprus & Chengdu, working fully digital and remote-friendly.
+        </p>
+      </article>
+      <article class="card">
+        <h3>What we’re looking for</h3>
+        <p>
+          Long-term collaborators in 3D environment art, character rigging,
+          sound design and narrative design. If you resonate with
+          ocean ruins, lonely cities and strange myths, let’s talk.
+        </p>
+      </article>
+    </section>
+
+    <section id="contact" class="card" style="margin-bottom:32px;">
+      <h3>Contact</h3>
+      <p>
+        Business / collaboration: <a href="mailto:contact@aqualen.studio">contact@aqualen.studio</a><br />
+        Dev & tech: <a href="mailto:dev@aqualen.studio">dev@aqualen.studio</a>
+      </p>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Aqualen Studio. All rights reserved.</span>
+      <span>Built with GitHub Pages & Cloudflare.</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
