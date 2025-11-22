@@ -2,327 +2,624 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Aqualen Studio</title>
+  <title>Aqualen Studio — Oceans, Ruins & Stories</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Aqualen Studio is an independent game & worldbuilding studio crafting diving experiences, ocean ruins and strange myths with Unreal Engine and AI-assisted tools."
+  />
   <style>
     :root {
-      --bg: #050816;
-      --card: #0f172a;
+      --bg: #030712;
+      --bg-soft: #050b18;
+      --bg-softer: #070e1e;
       --accent: #38bdf8;
-      --accent-soft: rgba(56,189,248,0.15);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: rgba(148,163,184,0.3);
+      --accent-soft: rgba(56, 189, 248, 0.2);
+      --accent-strong: #22d3ee;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --card-radius: 18px;
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.9);
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: system-ui,-apple-system,BlinkMacSystemFont,"SF Pro",sans-serif;
-      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
-      color: var(--text);
+      padding: 0;
     }
-    .shell {
-      max-width: 960px;
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1220 0, #020617 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 32px 20px 80px;
+      padding: 32px 20px 48px;
     }
-    header {
+
+    /* 顶部导航 */
+
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
-    .logo {
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: .16em;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 20%, #facc15, #f97316);
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
+    }
+
+    .studio-name {
+      letter-spacing: 0.18em;
+      font-size: 11px;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #9ca3af;
     }
-    nav {
+
+    .nav-links {
       display: flex;
       gap: 18px;
-      font-size: 14px;
-      color: var(--muted);
+      font-size: 13px;
+      color: #9ca3af;
     }
-    nav a {
-      text-decoration: none;
-      color: inherit;
-      position: relative;
+
+    .nav-link {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: 0.18s ease;
     }
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width .18s ease-out;
+
+    .nav-link:hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
     }
-    nav a:hover::after { width: 100%; }
+
+    /* HERO 区 */
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0,3fr) minmax(0,2.4fr);
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
       gap: 32px;
-      align-items: center;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: minmax(0,1fr); }
-      header { flex-direction: column; align-items: flex-start; }
-    }
-    .badge {
+
+    .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: .18em;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
       margin-bottom: 16px;
     }
-    h1 {
-      font-size: clamp(32px, 5vw, 44px);
-      margin: 0 0 12px;
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow: 0 0 10px var(--accent-strong);
     }
-    .hero-main span {
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span.highlight {
       color: var(--accent);
+      text-shadow: 0 0 24px rgba(56, 189, 248, 0.75);
     }
-    .hero-sub {
-      color: var(--muted);
+
+    .hero-subtitle {
+      color: var(--text-muted);
       font-size: 14px;
-      line-height: 1.7;
-      max-width: 36rem;
-      margin-bottom: 24px;
+      max-width: 32rem;
+      margin-bottom: 18px;
     }
-    .btn-row {
+
+    .hero-subtitle-cn {
+      color: #d1d5db;
+      font-size: 13px;
+      max-width: 30rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 24px;
     }
-    .btn {
-      padding: 9px 18px;
+
+    .btn-primary {
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      font-size: 14px;
-      cursor: pointer;
+      padding: 9px 18px;
+      font-size: 13px;
+      border: 1px solid rgba(56, 189, 248, 0.9);
+      background: radial-gradient(circle at 10% 0, #0ea5e9, #0369a1);
+      color: #e5e7eb;
+      box-shadow: 0 14px 35px rgba(8, 47, 73, 0.9);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      text-decoration: none;
-    }
-    .btn-primary {
-      background: linear-gradient(120deg, #22c1c3, #38bdf8, #6366f1);
-      border: none;
-      color: #0b1120;
-      font-weight: 600;
-    }
-    .btn span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-    .meta-line {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--muted);
+      cursor: pointer;
+      transition: 0.18s ease;
     }
 
-    .panel {
-      background: radial-gradient(circle at top, rgba(56,189,248,.12) 0, rgba(15,23,42,1) 45%);
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(8, 47, 73, 0.95);
     }
-    .panel-inner {
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,.2);
-      padding: 16px 16px 14px;
-      background: linear-gradient(145deg,#020617,#020617 30%,#020617 60%,rgba(15,23,42,1));
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 13px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.18s ease;
     }
-    .tag-row {
+
+    .btn-ghost:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+    }
+
+    .hero-meta span {
+      color: #9ca3af;
+    }
+
+    /* 右侧 “info box” */
+
+    .hero-panel {
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(59, 130, 246, 0.16), transparent 55%),
+        linear-gradient(135deg, #020617, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .panel-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 4px;
     }
-    .pill {
+
+    .tag {
       font-size: 11px;
       padding: 4px 9px;
       border-radius: 999px;
-      background: rgba(15,23,42,1);
-      border: 1px solid rgba(148,163,184,.4);
-      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      color: #e5e7eb;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 16px 18px 15px;
-    }
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-    .card p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    footer {
-      border-top: 1px solid rgba(31,41,55,.9);
-      padding-top: 18px;
+
+    .panel-heading {
       font-size: 12px;
-      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+    }
+
+    .panel-body {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .panel-note {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* Sections */
+
+    .section {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 20px 18px 18px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+    }
+
+    .section-sub {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    /* Projects cards */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 55%),
+        #020617;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    /* About & Looking for */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 16px;
+    }
+
+    .about-body {
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 10px;
+    }
+
+    .about-meta {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* Contact */
+
+    .contact-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
     }
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
+
+    .contact-item span {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .contact-email {
+      color: var(--accent-strong);
+    }
+
+    /* Footer */
+
+    .footer {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(31, 41, 55, 0.85);
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .section {
+        padding: 16px 14px 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <div class="logo">Aqualen Studio</div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+  <div class="page">
+    <!-- 顶部导航 -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-dot"></div>
+        <div class="studio-name">AQUALEN STUDIO</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#world" class="nav-link">Worldbuilding</a>
+        <a href="#studio" class="nav-link">Studio</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-main">
-        <div class="badge">
-          <span class="dot"></span> INDEPENDENT GAME & WORLD BUILDER
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Independent game & worldbuilder</span>
         </div>
-        <h1>
-          Crafting <span>oceans</span>, ruins and stories<br />
+
+        <h1 class="hero-title">
+          Crafting <span class="highlight">oceans</span>, ruins and stories
           for the next wave of players.
         </h1>
-        <p class="hero-sub">
-          Aqualen Studio 专注于海洋题材、潜水探索和意识流叙事的独立游戏与互动体验。
-          从一台潜水灯，到一片废墟海城，我们慢工、深潜、精修。
+
+        <p class="hero-subtitle">
+          Aqualen Studio explores diving, salvage and post-ocean futures — building
+          a first-person open-world prototype with Unreal Engine and AI-assisted tools.
         </p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="mailto:contact@aqualen.studio">
-            Talk to the studio →
+        <p class="hero-subtitle-cn">
+          以潜水与海洋废墟为核心，结合 UE 与 AI，打造沉浸式独立游戏与世界观内容。
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">
+            Dive into the vision
+            <span>↳</span>
           </a>
-          <a class="btn" href="#projects">
-            View concept projects
+          <a href="mailto:contact@aqualen.studio" class="btn-ghost">
+            Talk to the studio
           </a>
         </div>
-        <div class="meta-line">
-          AQUALEN.STUDIO · JOYTOART / KOI DASH · BUILT WITH UE & AI-ASSISTED TOOLS
+
+        <div class="hero-meta">
+          CURRENT FOCUS · <span>UE open-world prototype, IP bible & pipeline</span>
         </div>
       </div>
 
-      <aside class="panel">
-        <div class="panel-inner">
-          <div class="tag-row">
-            <span class="pill">Ocean exploration</span>
-            <span class="pill">Unreal Engine</span>
-            <span class="pill">Indie studio</span>
-            <span class="pill">Narrative design</span>
-          </div>
-          <p style="font-size:13px;color:#e5e7eb;line-height:1.7;margin:0 0 10px;">
-            Current focus:
-            building a first-person diving open-world prototype —
-            blending salvage gameplay, deep-sea ruins and
-            quiet, meditative moments under water.
-          </p>
-          <p style="font-size:12px;color:#9ca3af;margin:0;">
-            Now preparing studio identity, core game prototype, and
-            production pipeline that connects UE, AI tools and a remote-friendly workflow.
-          </p>
+      <aside class="hero-panel">
+        <div class="panel-tags">
+          <span class="tag">Diving game</span>
+          <span class="tag">Ocean ruins</span>
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">Indie studio</span>
+        </div>
+        <div class="panel-heading">Now in development</div>
+        <div class="panel-body">
+          First-person diving & salvage prototype: black boxes, wrecks and quiet,
+          meditative exploration under water. Built alongside a long-term world
+          bible connecting games, comics and narrative experiments.
+        </div>
+        <div class="panel-note">
+          Based between Cyprus & Chengdu · remote-friendly, small and flexible.
         </div>
       </aside>
     </section>
 
-    <section id="projects" class="grid">
-      <article class="card">
-        <h3>01 · Diving Open World Prototype</h3>
-        <p>
-          UE-based first-person diving game. Salvage wrecks, decode black boxes,
-          and unravel what reshaped the continent under the sea.
-        </p>
-      </article>
-      <article class="card">
-        <h3>02 · IP & Worldbuilding</h3>
-        <p>
-          Building a long-term world bible: factions, tech, myths and
-          locations that connect different games, comics and interactive stories.
-        </p>
-      </article>
-      <article class="card">
-        <h3>03 · Tools & Pipeline</h3>
-        <p>
-          Experimenting with AI-assisted concept art, narrative tools and
-          procedural level design, to keep a tiny team shipping ambitious worlds.
-        </p>
-      </article>
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-header">
+        <div class="section-title">Projects & Focus</div>
+        <div class="section-sub">Where the studio is putting energy right now.</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-label">01 · Diving Open World</div>
+          <h3 class="card-title">First-person diving prototype</h3>
+          <p class="card-body">
+            UE-based exploration game about salvage, decoding black boxes and
+            discovering what reshaped the continent under the sea. A mix of
+            chill diving, light tension and slow-burn storytelling.
+          </p>
+          <p class="card-footer">
+            Status: pre-production · building core feel, tools and test areas.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">02 · IP & Worldbuilding</div>
+          <h3 class="card-title">Long-term ocean mythos</h3>
+          <p class="card-body">
+            A world bible that connects factions, tech and myths across games,
+            comics and interactive experiments. Focus on ruins, strange cities
+            and post-ocean civilizations.
+          </p>
+          <p class="card-footer">
+            Outputs: lore, visual explorations, narrative prototypes.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">03 · Tools & Pipeline</div>
+          <h3 class="card-title">AI-assisted art & dev pipeline</h3>
+          <p class="card-body">
+            Building a small-team-friendly pipeline: AI concept art, narrative
+            tools and procedural level design, all wired into UE so shipping
+            doesn’t kill the studio.
+          </p>
+          <p class="card-footer">
+            Goal: keep the team tiny, the worlds rich, and the workflow sane.
+          </p>
+        </article>
+      </div>
     </section>
 
-    <section id="about" class="grid">
-      <article class="card">
-        <h3>About Aqualen Studio</h3>
-        <p>
-          Founded by an independent game developer with years of experience in art,
-          combat system design and worldbuilding. Aqualen Studio is currently
-          based in Cyprus & Chengdu, working fully digital and remote-friendly.
-        </p>
-      </article>
-      <article class="card">
-        <h3>What we’re looking for</h3>
-        <p>
-          Long-term collaborators in 3D environment art, character rigging,
-          sound design and narrative design. If you resonate with
-          ocean ruins, lonely cities and strange myths, let’s talk.
-        </p>
-      </article>
+    <!-- ABOUT & LOOKING FOR -->
+    <section class="section" id="studio">
+      <div class="section-header">
+        <div class="section-title">Studio & Collaboration</div>
+        <div class="section-sub">A small shop for oceans, ruins and character-driven stories.</div>
+      </div>
+
+      <div class="two-col">
+        <div id="world">
+          <h3 style="font-size: 14px; margin-bottom: 8px">About Aqualen Studio</h3>
+          <p class="about-body">
+            Aqualen Studio is an independent game & worldbuilding practice led by a
+            long-time action game designer with a soft spot for ocean ruins and weird
+            myths. The studio works digitally between Cyprus and Chengdu, mixing
+            Unreal Engine production with AI-assisted ideation and tooling.
+          </p>
+          <p class="about-body">
+            The focus: build one strong diving-focused IP, then explore it through
+            games, visual stories and experimental narrative formats.
+          </p>
+          <p class="about-meta">
+            Languages: EN / 中文 · Remote-friendly · Comfortable with long-term,
+            slow-burn worldbuilding.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="font-size: 14px; margin-bottom: 8px">What we’re looking for</h3>
+          <p class="about-body">
+            In the mid-term, the studio is interested in connecting with:
+          </p>
+          <ul class="about-body" style="padding-left: 18px; list-style: disc">
+            <li>3D environment artists comfortable with stylized ruins & deep-sea vibes;</li>
+            <li>Sound / music designers who enjoy quiet tension more than loud action;</li>
+            <li>Narrative collaborators into long-form worldbuilding and strange cities.</li>
+          </ul>
+          <p class="about-meta">
+            If that sounds like you, drop a line with a short intro and portfolio link.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="card" style="margin-bottom:32px;">
-      <h3>Contact</h3>
-      <p>
-        Business / collaboration: <a href="mailto:contact@aqualen.studio">contact@aqualen.studio</a><br />
-        Dev & tech: <a href="mailto:dev@aqualen.studio">dev@aqualen.studio</a>
-      </p>
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-header">
+        <div class="section-title">Contact</div>
+        <div class="section-sub">Simple, old-school: just send an email.</div>
+      </div>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span>Business / collaboration</span>
+          <a href="mailto:contact@aqualen.studio" class="contact-email">
+            contact@aqualen.studio
+          </a>
+        </div>
+        <div class="contact-item">
+          <span>Dev / tech</span>
+          <a href="mailto:dev@aqualen.studio" class="contact-email">
+            dev@aqualen.studio
+          </a>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      <span>© <span id="year"></span> Aqualen Studio. All rights reserved.</span>
-      <span>Built with GitHub Pages & Cloudflare.</span>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>© 2025 Aqualen Studio. All rights reserved.</div>
+      <div>Built with GitHub Pages · Protected by Cloudflare.</div>
     </footer>
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
