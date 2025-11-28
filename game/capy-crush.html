@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Capy Crush · Aqualen Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="page-wrap">
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-logo">A</span>
+        <div class="brand-text">
+          <div class="brand-name">Capy Crush</div>
+          <div class="brand-tagline">Project Overview</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link nav-link-active">Games</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section game-layout">
+        <div class="game-main">
+          <h1>Capy Crush</h1>
+          <p class="game-sub">
+            A compact arcade puzzle game with a soft aquatic mood and sharp,
+            readable mechanics.
+          </p>
+
+          <!-- 占位：未来这里会嵌入 Unity WebGL -->
+          <div class="game-play-wrapper">
+            <div class="game-play-header">
+              <span class="pill pill-soft">WebGL demo</span>
+              <span class="game-play-status">Coming soon</span>
+            </div>
+            <div class="game-play-placeholder">
+              <!-- 未来你把 WebGL build 放在 /play/capycrush/，这里改成 iframe 即可 -->
+              <!-- 例如：
+              <iframe src="../play/capycrush/index.html" class="game-frame" loading="lazy"></iframe>
+              -->
+              <p>🎮 Web playable demo is not live yet.</p>
+              <p class="hint">
+                Once the Unity WebGL build is ready, it will appear here as an embedded, playable version.
+              </p>
+            </div>
+          </div>
+
+          <div class="game-section">
+            <h2>Core idea</h2>
+            <p>
+              Capy Crush is designed as a “small but high-agency” arcade puzzle loop:
+              fast feedback, readable states, and a feeling of building flow
+              rather than just grinding for score.
+            </p>
+          </div>
+
+          <div class="game-section">
+            <h2>Platforms</h2>
+            <ul class="clean-list">
+              <li>Initial: WebGL (desktop browser)</li>
+              <li>Planned: iOS & Android (native builds)</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="game-side">
+          <div class="side-card">
+            <h3>Build status</h3>
+            <ul class="clean-list">
+              <li>Core loop: prototyping</li>
+              <li>Art direction: early mood boards</li>
+              <li>Feel tuning: in progress</li>
+            </ul>
+          </div>
+
+          <div class="side-card">
+            <h3>Tech</h3>
+            <ul class="clean-list">
+              <li>Engine: Unity</li>
+              <li>Target: WebGL + Mobile</li>
+              <li>Backend: None (offline-first)</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© 2025 Aqualen Studio.</div>
+      <div>Aqualen Studio is a creative label under <strong>Joytoart Gaming Limited</strong>.</div>
+    </footer>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
