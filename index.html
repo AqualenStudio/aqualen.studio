@@ -1,366 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aqualen Studio — Oceans, Ruins & Stories</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Aqualen Studio is an independent game & worldbuilding label under Joytoart Gaming Limited, exploring oceans, ruins and strange myths."
-  />
-  <link rel="canonical" href="https://aqualen.studio" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Aqualen Studio — Silence Holds Power</title>
+  <meta name="description" content="Aqualen Studio is an independent game under Joytoart Gaming Ltd. (Cyprus, EU). Eastern minimalism, mysterious worlds, sharp systems." />
+  <meta name="theme-color" content="#0b0d12" />
 
-  <!-- 引用外部样式 -->
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Aqualen Studio — Silence Holds Power" />
+  <meta property="og:description" content="Stylized indie games with eastern minimal aesthetics and sharp systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aqualen.studio/" />
+  <meta property="og:image" content="https://aqualen.studio/assets/og-cover.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 
 <body>
-  <div id="bg-particles"><canvas id="particles-canvas"></canvas></div>
-  <div class="aura"></div>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/" aria-label="Aqualen Studio home">
+        <span class="mark" aria-hidden="true">⟡</span>
+        <span class="brand-text">Aqualen Studio</span>
+      </a>
 
-  <header>
-    <nav class="nav-bar">
-      <div class="nav-left">
-        <div class="logo-badge">AQ</div>
-        <div class="brand-block">
-          <div class="brand-name">AQUALEN STUDIO</div>
-          <div class="brand-sub">Oceans · Ruins · Playgrounds</div>
+      <div class="nav-right">
+        <a class="nav-link" href="/projects.html" data-i18n="nav_projects">Projects</a>
+        <a class="nav-link" href="/news.html" data-i18n="nav_news">News</a>
+        <a class="nav-link" href="/about.html" data-i18n="nav_about">About</a>
+
+        <!-- Language toggle -->
+        <div class="lang" role="group" aria-label="Language">
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="ja" type="button">日本語</button>
         </div>
       </div>
-      <div class="nav-links">
-        <a href="#top">Home</a>
-        <a href="#games">Games</a>
-        <a href="#playtest">Playtest</a>
-        <a href="#studio">Studio</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <span class="nav-tag">Under Joytoart Gaming Ltd.</span>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main class="page-shell" id="top">
-    <!-- HERO -->
-    <section class="hero" aria-label="Aqualen Studio headline">
-      <div class="hero-main">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          <span class="pill-label">Aqualen Studio</span>
-          <span class="pill-tag">Indie | UE | Water Worlds</span>
-        </div>
-        <h1 class="hero-title">Oceans, Ruins & Quiet Catastrophes</h1>
-        <p class="hero-sub">
-          We are a small, stubborn studio exploring <strong>drowned cities, fading myths and
-            slow-burn disaster stories</strong>. Built on Unreal Engine, AI-assisted tools and a
-          lot of late-night coffee in Larnaca & Chengdu.
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="card pad">
+        <div class="kicker" data-i18n="hero_kicker">AQUALEN STUDIO</div>
+        <h1 data-i18n="hero_title">Depth Over Noise</h1>
+        <p class="muted" data-i18n="hero_desc">
+          An indie game &amp; under Joytoart Gaming Ltd. (Cyprus, EU).<br />
+          Eastern minimalism, mysterious worlds, sharp systems.
         </p>
-        <div class="hero-actions">
-          <button class="btn btn-primary"
-                  onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
-            <span class="icon">▶</span><span>Jump into current projects</span>
-          </button>
-          <button class="btn btn-ghost"
-                  onclick="document.getElementById('playtest').scrollIntoView({behavior:'smooth'})">
-            Try the tiny browser mini-game
-          </button>
+
+        <div class="btns">
+          <a class="btn primary" href="/projects.html" data-i18n="cta_primary">View Projects</a>
+          <a class="btn" href="/demo-match3.html" data-i18n="cta_secondary">Play Web Demo</a>
+          <a class="btn" href="/about.html#contact" data-i18n="cta_contact">Contact</a>
         </div>
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Key Project</span>
-            <span class="hero-meta-value">Capy Crush · Mobile prototype</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Focus</span>
-            <span class="hero-meta-value">System-driven stories · Water & ruins</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Timezone</span>
-            <span class="hero-meta-value">Cyprus + China (remote)</span>
-          </div>
+
+        <div class="spacer"></div>
+
+        <div class="notice" data-i18n="hero_tip">
+          Tip: Replace hero images with WebP. Keep each under ~250KB for fast mobile load.
         </div>
       </div>
 
-      <aside class="hero-visual" aria-label="Water simulation preview">
-        <div class="water-card">
-          <div class="water-inner">
-            <div class="water-layer"></div>
-            <div class="water-layer-2"></div>
-            <div class="water-center-label">WATER-LINE / 2035</div>
-            <div class="water-mini-caption">engine: unreal + ai assist</div>
-            <div class="water-mini-badge">
-              <span class="water-mini-dot"></span>
-              <span>Prototype loop online</span>
+      <!-- Carousel -->
+      <div class="card hero-media">
+        <div class="carousel" data-carousel>
+          <div class="carousel-track" data-carousel-track>
+            <div class="carousel-slide is-active">
+              <img src="/assets/hero/slide-1.webp" alt="Aqualen Studio — visual 1" loading="eager" decoding="async" />
             </div>
-            <div class="water-status">
-              <div class="water-status-group">
-                <div class="water-status-title">Current focus</div>
-                <div class="water-status-value">Capy Crush · Vertical slice</div>
-              </div>
-              <div class="water-status-group">
-                <div class="water-status-title">Playtest</div>
-                <div class="water-status-value">
-                  <span class="water-tag-ok">Open mini-game below</span>
-                </div>
-              </div>
-              <div class="water-status-group">
-                <div class="water-pill">
-                  <span class="water-pill-dot"></span>
-                  <span>Water & debris sim · WIP</span>
-                </div>
-              </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero/slide-2.webp" alt="Aqualen Studio — visual 2" loading="lazy" decoding="async" />
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero/slide-3.webp" alt="Aqualen Studio — visual 3" loading="lazy" decoding="async" />
             </div>
           </div>
-        </div>
-      </aside>
-    </section>
 
-    <!-- GAMES -->
-    <section id="games">
-      <div class="section-label">Games & Worlds</div>
-      <div class="section-title-row">
-        <h2 class="section-title">Current & Legacy projects</h2>
-        <p class="section-sub">
-          A quick snapshot of what Aqualen Studio is currently touching. Some are live prototypes,
-          some are ghosts from older timelines (hi, Inkighter).
+          <button class="carousel-btn prev" type="button" aria-label="Previous slide" data-carousel-prev>‹</button>
+          <button class="carousel-btn next" type="button" aria-label="Next slide" data-carousel-next>›</button>
+
+          <div class="carousel-dots" aria-label="Slide dots" data-carousel-dots></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="kicker" data-i18n="featured_kicker">FEATURED</div>
+
+    <div class="grid">
+      <a class="card pad hover" href="/project-inkighter.html">
+        <div class="tag">PC / Steam</div>
+        <h3>Inkighter</h3>
+        <p class="muted" data-i18n="featured_inkighter">
+          Stylized indie action. Ink, blades, and quiet catastrophe.
         </p>
-      </div>
+      </a>
 
-      <div class="grid">
-        <article class="card">
-          <div class="card-header">
-            <div class="card-title-block">
-              <div class="card-title">Capy Crush</div>
-              <div class="card-sub">Mobile · Cozy puzzle / prototype</div>
-            </div>
-            <div class="chip chip-live">Live prototype</div>
-          </div>
-          <p class="card-body">
-            A small, juicy match-3-like with capybaras, water tiles and “tidal” board resets.
-            Built in Unity as a sandbox for monetization, content pipelines and A/B testing.
-          </p>
-          <div class="card-meta-row">
-            <div class="pill-small">
-              <span class="pill-small-dot"></span>
-              <span>Unity · Mobile first · Ads / IAP tests</span>
-            </div>
-            <a class="card-link" href="#playtest">Try browser mini-game</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div class="card-title-block">
-              <div class="card-title">Inkighter</div>
-              <div class="card-sub">PC · 2D ink-fighting (legacy)</div>
-            </div>
-            <div class="chip">Legacy project</div>
-          </div>
-          <p class="card-body">
-            A long-running 2D ink-brawler that went through too many iterations, remote teams and
-            code rewrites. It taught us a lot about scope, pipelines, and when to kill your darlings.
-          </p>
-          <div class="card-meta-row">
-            <div class="pill-small">
-              <span class="pill-small-dot"></span>
-              <span>Unity · Custom tools · East-ink aesthetics</span>
-            </div>
-            <span class="card-sub">Currently frozen, tech & art being recycled.</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div class="card-title-block">
-              <div class="card-title">Future waterworld IP</div>
-              <div class="card-sub">UE5 · Open Ruin exploration</div>
-            </div>
-            <div class="chip">Pre-production</div>
-          </div>
-          <p class="card-body">
-            Long-term IP: a half-sunk world in 2035+ where cities are just scaffolding on top of
-            old floodlines. Slow exploration, salvage black boxes, and conversation with ghosts
-            from previous timelines.
-          </p>
-          <div class="card-meta-row">
-            <div class="pill-small">
-              <span class="pill-small-dot"></span>
-              <span>Unreal Engine 5 · Single-player · Narrative systems</span>
-            </div>
-            <span class="card-sub">Early research, no public builds yet.</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- MINI GAME / PLAYTEST -->
-    <section id="playtest">
-      <div class="section-label">Playtest</div>
-      <div class="section-title-row">
-        <h2 class="section-title">Bubble Rush — Browser mini-game</h2>
-        <p class="section-sub">
-          A tiny JS toy set in the same “Capy Crush” mood: pop glowing bubbles before the timer
-          runs out. It’s not the real mobile build — just a playful warm-up living on the website.
+      <a class="card pad hover" href="/project-capy-strike.html">
+        <div class="tag">iOS</div>
+        <h3>Capy Strike</h3>
+        <p class="muted" data-i18n="featured_capy">
+          Upcoming mobile title. Capybara chaos, clean systems.
         </p>
+      </a>
+
+      <a class="card pad hover" href="/press/index.html">
+        <div class="tag" data-i18n="press_tag">Press</div>
+        <h3 data-i18n="press_title">Press Kit</h3>
+        <p class="muted" data-i18n="press_desc">Logos, screenshots, factsheet, contact.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= TRAILER ================= -->
+  <section class="container" aria-labelledby="trailer-title">
+    <div class="kicker" id="trailer-title">TRAILER</div>
+
+    <div class="card" style="overflow:hidden">
+      <div
+        id="yt-wrap"
+        style="
+          position:relative;
+          aspect-ratio:16/9;
+          background:rgba(255,255,255,.03);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        "
+      >
+        <button
+          id="yt-play"
+          class="btn primary"
+          type="button"
+          style="padding:12px 18px; font-size:15px;"
+          aria-label="Play Inkighter Trailer"
+        >
+          ▶ Play Trailer
+        </button>
       </div>
+    </div>
+  </section>
 
-      <div class="game-shell">
-        <div>
-          <div class="game-header">
-            <div>
-              <div class="game-title">Bubble Rush</div>
-              <div class="game-sub">
-                Click / tap the glowing orbs to score. Combo streaks boost your multiplier. You
-                have 45 seconds. Simple, juicy, a good way to see if your mouse is awake.
-              </div>
-            </div>
-            <span class="tag-mini blue">Built-in browser</span>
-          </div>
+</main>
 
-          <div class="game-meta-row">
-            <span class="tag-mini">Input: mouse / touch</span>
-            <span class="tag-mini">Session: 45s</span>
-            <span class="tag-mini">Engine: pure JS + canvas</span>
-          </div>
+<footer>
+  <div class="container footer">
+    <div class="muted">
+      <strong>Aqualen Studio</strong> · Joytoart Gaming Ltd. (Cyprus, EU)
+    </div>
+    <div class="footer-links">
+      <a href="/about.html#contact" data-i18n="footer_contact">Contact</a>
+      <a href="/privacy.html" data-i18n="footer_privacy">Privacy</a>
+    </div>
+  </div>
+</footer>
 
-          <p class="game-sub">
-            This is a <strong>standalone JS toy</strong>, not a WebGL build. The actual Capy
-            Crush mobile prototype lives in Unity with more serious economy & puzzle design.
-          </p>
+<!-- Existing scripts -->
+<script src="/assets/js/i18n.js" defer></script>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/carousel.js" defer></script>
 
-          <button class="btn-xs" type="button" onclick="startBubbleGame()">
-            <span>▶ Start / restart round</span>
-          </button>
-        </div>
+<!-- ================= TRAILER SCRIPT ================= -->
+<script>
+  (function () {
+    const videoId = "JokkS_4qgRA"; // Inkighter trailer YouTube ID
+    const wrap = document.getElementById("yt-wrap");
+    const btn  = document.getElementById("yt-play");
 
-        <div>
-          <div class="game-panel">
-            <canvas id="capyGameCanvas" width="420" height="260" aria-label="Bubble Rush mini-game"></canvas>
-            <div class="game-overlay">
-              <div class="game-overlay-text">
-                Click or tap glowing bubbles · avoid red shards
-              </div>
-            </div>
-          </div>
+    if (!wrap || !btn) return;
 
-          <div class="hud">
-            <div class="hud-item">
-              <div class="hud-dot"></div>
-              <div>
-                <div class="hud-label">Score</div>
-                <div class="hud-value" id="hud-score">0</div>
-              </div>
-            </div>
-            <div class="hud-item">
-              <div class="hud-dot" style="background: radial-gradient(circle,#f59e0b,#f97316);"></div>
-              <div>
-                <div class="hud-label">Combo</div>
-                <div class="hud-value" id="hud-combo">x1</div>
-              </div>
-            </div>
-            <div class="hud-item">
-              <div class="hud-dot" style="background: radial-gradient(circle,#38bdf8,#0ea5e9);"></div>
-              <div>
-                <div class="hud-label">Time</div>
-                <div class="hud-value" id="hud-time">45s</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    btn.addEventListener("click", function () {
+      wrap.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
+          title="Inkighter Official Trailer"
+          style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+    });
+  })();
+</script>
 
-    <!-- STUDIO -->
-    <section id="studio">
-      <div class="section-label">Studio</div>
-      <div class="section-title-row">
-        <h2 class="section-title">Who is behind Aqualen</h2>
-        <p class="section-sub">
-          Aqualen Studio is a small label attached to Joytoart Gaming Limited (Cyprus).
-          It focuses on water-heavy IP, systems design and long-form worldbuilding instead of
-          pure “feature shopping”.
-        </p>
-      </div>
-
-      <div class="stack">
-        <p>
-          <strong>Joytoart Gaming Limited</strong> is the parent company handling publishing,
-          finance and legal. Aqualen Studio is the creative / experimental label under it, where
-          prototypes and new IPs are born.
-        </p>
-        <p>
-          We like <strong>tight loops, weird systems, and characters who feel like people</strong>
-          instead of quest dispensers. We’re slowly building a connected “floodline” universe
-          across multiple games and mediums.
-        </p>
-        <p>
-          Based in <strong>Cyprus & Chengdu</strong>, we work async across timezones, using UE,
-          Unity, AI tooling and a lot of Notion boards.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-label">Contact</div>
-      <div class="section-title-row">
-        <h2 class="section-title">Talk, collab, or just lurk</h2>
-        <p class="section-sub">
-          If you’re another solo dev, small studio, publisher, or just someone who fell down a
-          rabbit hole and ended up here — feel free to reach out.
-        </p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-card">
-          <p><strong>Business / legal</strong></p>
-          <p>
-            Aqualen Studio is a label of
-            <strong>Joytoart Gaming Limited</strong> (Cyprus). For contracts, invoices and
-            publishing, please use:
-          </p>
-          <p>
-            Email:
-            <a href="mailto:contact@aqualen.studio">contact@aqualen.studio</a><br />
-            Finance:
-            <a href="mailto:finance@aqualen.studio">finance@aqualen.studio</a>
-          </p>
-        </div>
-
-        <div class="contact-card">
-          <p><strong>Lightweight contact / socials</strong></p>
-          <p>
-            For playtest links, devlogs or general questions:
-          </p>
-          <p>
-            GitHub:
-            <a href="https://github.com/AqualenStudio" target="_blank" rel="noreferrer">
-              github.com/AqualenStudio
-            </a><br />
-            Twitter / X: <span style="opacity:.7;">TBD · staying low for now</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-main">
-            <strong>Aqualen Studio</strong> is a creative label fully owned and operated by
-            <strong>Joytoart Gaming Limited</strong> (Cyprus).<br />
-            All game concepts, prototypes and website assets are © Joytoart Gaming Limited /
-            Aqualen Studio unless otherwise stated.
-          </div>
-        </div>
-        <div class="footer-links">
-          <span>© <span id="year-span"></span> Joytoart Gaming Limited · Aqualen Studio.</span>
-          <a href="#top">Back to surface ↑</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- 外部 JS：粒子背景 & 小游戏 -->
-  <script src="js/particles.js"></script>
-  <script src="js/bubble-game.js"></script>
 </body>
 </html>

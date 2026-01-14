@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Aqualen Studio</title>
+  <meta name="description" content="About Aqualen Studio under Joytoart Gaming Ltd. (Cyprus, EU)." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="/index.html">
+      <img src="/assets/img/logo-xuanwu.svg" alt="Aqualen Studio logo" width="34" height="34" />
+      <div><div class="t1">Aqualen Studio</div><div class="t2">Joytoart Gaming Ltd. · Cyprus (EU)</div></div>
+    </a>
+    <nav class="navlinks">
+      <a data-nav href="/index.html" data-i18n="nav_home">Home</a>
+      <a data-nav href="/projects.html" data-i18n="nav_projects">Projects</a>
+      <a data-nav href="/devlog.html" data-i18n="nav_devlog">News / Devlog</a>
+      <a data-nav href="/demo-match3.html" data-i18n="nav_demo">Web Demo</a>
+      <a data-nav href="/about.html" data-i18n="nav_about">About</a>
+      <a data-nav href="/about.html#contact" data-i18n="nav_contact">Contact</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ja" aria-pressed="false">JA</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-title">
+    <div class="kicker">STUDIO</div>
+    <h1 data-i18n="nav_about">About</h1>
+    <p class="muted prose">
+      Aqualen Studio is an independent game studio under Joytoart Gaming Ltd. (Cyprus, EU).
+We focus on building stylized worlds shaped by restraint, silence, and depth.
+Our games favor clarity over noise, atmosphere over excess, and systems that speak quietly but carry weight.
+    </p>
+  </section>
+
+  <div class="spacer"></div>
+
+  <div class="card pad prose">
+    <h2>Focus</h2>
+<ul>
+  <li>Stylized indie games for PC, mobile, and future consoles.</li>
+  <li>Eastern-inspired mystery expressed through minimal force.</li>
+  <li>Quiet systems, deliberate pacing, and long-form worldbuilding.</li>
+</ul>
+
+    <h2 id="contact" data-i18n="nav_contact">Contact</h2>
+    <p class="muted">
+      Business / Press: <a href="mailto:contact@aqualen.studio">contact@aqualen.studio</a>
+    </p>
+    <p class="muted small">
+      Legal entity: Joytoart Gaming Ltd. (Cyprus, EU).
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="padding-top:24px">
+    <div class="muted small">© <span id="y"></span> Aqualen Studio</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

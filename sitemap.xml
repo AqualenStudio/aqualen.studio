@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://aqualen.studio/</loc>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://aqualen.studio/</loc></url>
+  <url><loc>https://aqualen.studio/projects.html</loc></url>
+  <url><loc>https://aqualen.studio/project-inkighter.html</loc></url>
+  <url><loc>https://aqualen.studio/project-capy-strike.html</loc></url>
+  <url><loc>https://aqualen.studio/project-switch.html</loc></url>
+  <url><loc>https://aqualen.studio/devlog.html</loc></url>
+  <url><loc>https://aqualen.studio/post-2026-01-13.html</loc></url>
+  <url><loc>https://aqualen.studio/demo-match3.html</loc></url>
+  <url><loc>https://aqualen.studio/about.html</loc></url>
 </urlset>

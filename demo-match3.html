@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Match-3 Web Demo — Aqualen Studio</title>
+  <meta name="description" content="A lightweight match-3 web demo (mobile friendly)." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .demo-wrap{display:grid; grid-template-columns: 1fr; gap:14px; max-width: 860px}
+    canvas{width:100%; height:auto; background: rgba(255,255,255,.03); border:1px solid var(--line); border-radius: var(--radius)}
+    .hud{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="/index.html">
+      <img src="/assets/img/logo-xuanwu.svg" alt="Aqualen Studio logo" width="34" height="34" />
+      <div><div class="t1">Aqualen Studio</div><div class="t2">Joytoart Gaming Ltd. · Cyprus (EU)</div></div>
+    </a>
+    <nav class="navlinks">
+      <a data-nav href="/index.html" data-i18n="nav_home">Home</a>
+      <a data-nav href="/projects.html" data-i18n="nav_projects">Projects</a>
+      <a data-nav href="/devlog.html" data-i18n="nav_devlog">News / Devlog</a>
+      <a data-nav href="/demo-match3.html" data-i18n="nav_demo">Web Demo</a>
+      <a data-nav href="/about.html" data-i18n="nav_about">About</a>
+      <a data-nav href="/about.html#contact" data-i18n="nav_contact">Contact</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ja" aria-pressed="false">JA</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-title">
+    <div class="kicker">WEB DEMO</div>
+    <h1>Match-3 (Mini)</h1>
+    <p class="muted prose">Tap two adjacent tiles to swap. Match 3+ to score. Mobile friendly.</p>
+  </section>
+
+  <div class="demo-wrap">
+    <div class="hud">
+      <div class="notice">Score: <span id="score">0</span> · Moves: <span id="moves">0</span></div>
+      <div class="btns" style="margin:0">
+        <button class="btn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </div>
+    <canvas id="c" width="720" height="720" aria-label="Match 3 game canvas"></canvas>
+    <div class="notice">
+      This is a lightweight demo for the website. Replace tile art later by drawing sprites instead of colored shapes.
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="padding-top:24px">
+    <div class="muted small">Aqualen Studio · Joytoart Gaming Ltd. (Cyprus, EU)</div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/match3.js" defer></script>
+</body>
+</html>
