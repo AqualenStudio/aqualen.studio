@@ -260,3 +260,71 @@ footer{
   object-fit: cover;
   display: block;
 }
+
+/* ---- carousel compatibility patch (for carousel-slide / carousel-dots / carousel-btn) ---- */
+
+.carousel-track{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform: scale(1.01);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+/* JS 会切 aria-hidden，跟你原 CSS 一样的逻辑 */
+.carousel-slide[aria-hidden="false"]{
+  opacity:1;
+  transform: scale(1);
+}
+
+.carousel-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* dots 容器 */
+.carousel-dots{
+  display:flex;
+  gap:6px;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+/* 你 JS 生成的 dot 本来就是 .dot，这里保持一致 */
+.carousel-dots .dot{
+  width: 28px;
+  height: 6px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  cursor:pointer;
+}
+.carousel-dots .dot[aria-selected="true"]{
+  background: linear-gradient(90deg, rgba(143,211,255,.55), rgba(185,166,255,.45));
+  border-color: rgba(255,255,255,.22);
+}
+
+/* prev/next 按钮：防止被盖住或看不见 */
+.carousel-btn{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.25);
+  color: #fff;
+  cursor:pointer;
+}
+.carousel-btn.prev{ left: 12px; }
+.carousel-btn.next{ right: 12px; }
+.carousel-btn:hover{ background: rgba(0,0,0,.35); }
