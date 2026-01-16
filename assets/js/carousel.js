@@ -24,7 +24,25 @@
     }
 
     dots.forEach((d, i)=> d.addEventListener("click", ()=> { show(i); start(); }));
+    // prev / next buttons
+const prevBtn = root.querySelector('[data-carousel-prev], .carousel-btn.prev, .carousel-btn--prev');
+const nextBtn = root.querySelector('[data-carousel-next], .carousel-btn.next, .carousel-btn--next');
 
+if (prevBtn) {
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    show(idx - 1);
+    start();
+  });
+}
+
+if (nextBtn) {
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    show(idx + 1);
+    start();
+  });
+}
     // touch swipe
     let x0 = null;
     root.addEventListener("touchstart", (e)=> { x0 = e.touches[0].clientX; }, {passive:true});

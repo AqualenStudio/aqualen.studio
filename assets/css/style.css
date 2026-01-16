@@ -232,7 +232,8 @@ footer{
 .prose ul{margin: 8px 0 12px}
 .prose li{margin: 6px 0}
 /* =================
-   HERO CAROUSEL FIX
+   HERO CAROUSEL FIXLEGACY CAROUSEL (unused)
+   old flex-based carousel
    ================= */
 
 .card.hero-media {
@@ -287,6 +288,7 @@ footer{
   width:100%;
   height:100%;
   object-fit:cover;
+  filter: contrast(1.05) saturate(1.05);
 }
 
 /* dots 容器 */
@@ -328,3 +330,97 @@ footer{
 .carousel-btn.prev{ left: 12px; }
 .carousel-btn.next{ right: 12px; }
 .carousel-btn:hover{ background: rgba(0,0,0,.35); }
+
+/* =========================================================
+   HERO FINAL LAYOUT — LOCKED VERSION
+   Left: 30% artistic card
+   Right: 70% 16:9 visual carousel
+========================================================= */
+
+/* 1️⃣ Hero Grid：30 / 70 明确分栏 */
+.hero .hero-grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* 2️⃣ 左侧：艺术感窄卡 */
+.card.pad {
+  border-radius: 22px;
+  backdrop-filter: blur(14px);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+}
+
+/* Hero card layout */
+.hero .card.pad {
+  padding: 28px 28px 32px;
+}
+
+/* 控制左侧文字不要太“满” */
+.hero .card.pad h1 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.15;
+}
+
+.hero .card.pad p {
+  max-width: 38ch;
+}
+
+/* 3️⃣ 右侧：16:9 主视觉容器 */
+.hero .card.hero-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* 🔥 核心 */
+  height: auto;           /* 不再被高度强行压缩 */
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* 4️⃣ Carousel 本体吃满 16:9 */
+.hero .carousel,
+.hero .carousel-track,
+.hero .carousel-slide {
+  width: 100%;
+  height: 100%;
+}
+
+/* 5️⃣ 图片：不裁切、不拉伸 */
+.hero .carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* 如果你想铺满可改成 cover */
+  background: #0b0d12;   /* 留黑边更电影感 */
+}
+
+/* 6️⃣ 轮播按钮视觉微调 */
+.hero .carousel-btn {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+}
+
+.hero .carousel-btn:hover {
+  background: rgba(0,0,0,0.55);
+}
+
+/* 7️⃣ Dot 靠右下，不挡画面 */
+.hero .carousel-dots {
+  position: absolute;
+  right: 20px;
+  bottom: 16px;
+}
+
+/* 8️⃣ 移动端自动降级 */
+@media (max-width: 900px) {
+  .hero .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero .card.hero-media {
+    aspect-ratio: 16 / 9;
+  }
+}
