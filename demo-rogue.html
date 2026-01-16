@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Capy Survival Demo — Aqualen Studio</title>
+
+  <!-- <link rel="stylesheet" href="/assets/site.css" /> -->
+
+  <style>
+    :root{
+      --bg:#070a12;
+      --panel: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --accent: rgba(120,190,255,.95);
+      --danger: rgba(255,120,120,.95);
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
+
+    /* ====== Site header/nav (standalone) ====== */
+    .siteHeader{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .navWrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+      text-decoration:none;
+      font-weight: 800;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .logoMark{
+      width: 26px; height: 26px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(120,190,255,.35), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,.08), transparent 60%),
+        rgba(255,255,255,.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      color: rgba(255,255,255,.78);
+      text-decoration:none;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: .15s ease;
+    }
+    .nav a:hover{
+      color: rgba(255,255,255,.92);
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+    }
+    .nav a.active{
+      color: rgba(255,255,255,.92);
+      border-color: rgba(120,190,255,.28);
+      background: rgba(120,190,255,.10);
+    }
+    .lang{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin-left: 6px;
+      padding-left: 6px;
+      border-left: 1px solid rgba(255,255,255,.10);
+    }
+    .lang button{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.80);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .lang button:hover{ border-color: rgba(255,255,255,.22); }
+    .lang button.on{
+      border-color: rgba(120,190,255,.35);
+      background: rgba(120,190,255,.14);
+      color: rgba(255,255,255,.92);
+    }
+
+    /* ====== Page wrap ====== */
+    .wrap{ max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+    /* ====== Demo UI (your original) ====== */
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      border: 1px solid var(--stroke); background: var(--panel); border-radius: 14px;
+      padding: 10px 12px; margin-bottom: 12px; backdrop-filter: blur(8px);
+    }
+    .brand{ display:flex; gap:10px; align-items:center; }
+    .pill{ font-size:12px; padding:6px 10px; border-radius: 999px; border:1px solid var(--stroke); background: rgba(0,0,0,.2); color: var(--muted); }
+    .btn{
+      cursor:pointer; user-select:none; border:1px solid var(--stroke); background: rgba(0,0,0,.25);
+      color: var(--text); padding:8px 12px; border-radius: 12px; font-size: 14px;
+    }
+    .btn:hover{ border-color: rgba(255,255,255,.24); }
+    .btn.primary{ border-color: rgba(120,190,255,.35); background: rgba(120,190,255,.12); }
+    .hud{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-start; }
+    .hud b{ color: var(--text); }
+    .hud span{ color: var(--muted); }
+
+    .stage{
+      position: relative;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.2));
+      border-radius: 16px;
+      overflow:hidden;
+      height: min(72vh, 720px);
+    }
+    canvas{ display:block; width:100%; height:100%; }
+
+    .overlay{
+      position:absolute; inset:0; display:none;
+      align-items:center; justify-content:center;
+      background: rgba(0,0,0,.55);
+      padding: 18px;
+    }
+    .overlay.show{ display:flex; }
+    .modal{
+      width:min(720px, 96vw);
+      border:1px solid var(--stroke);
+      background: rgba(10,14,24,.92);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+    }
+    .modal h2{ margin: 6px 0 10px; font-size: 18px; }
+    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+    .card{
+      cursor:pointer; border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      border-radius: 14px; padding: 10px;
+      min-height: 92px;
+    }
+    .card:hover{ border-color: rgba(120,190,255,.45); background: rgba(120,190,255,.10); }
+    .card .t{ font-weight: 700; margin-bottom:6px; }
+    .card .d{ color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+    .help{
+      margin-top: 10px; color: var(--muted); font-size: 12px;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    }
+    .bar{
+      position: relative; width: 220px; height: 10px; border-radius: 999px;
+      border: 1px solid var(--stroke); background: rgba(0,0,0,.25); overflow:hidden;
+    }
+    .bar > i{ position:absolute; inset:0; width: 50%; background: rgba(120,190,255,.85); display:block; }
+    .bar.hp > i{ background: rgba(255,120,120,.85); }
+    .touchHint{
+      position:absolute; left: 12px; bottom: 12px;
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: rgba(255,255,255,.55);
+      background: rgba(0,0,0,.15);
+      font-size: 12px;
+      pointer-events:none;
+    }
+
+    /* ====== Footer ====== */
+    .siteFooter{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 16px 28px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .siteFooter a{
+      color: rgba(255,255,255,.70);
+      text-decoration: none;
+    }
+    .siteFooter a:hover{ text-decoration: underline; }
+
+    @media (max-width: 720px){
+      .cards{ grid-template-columns: 1fr; }
+      .bar{ width: 160px; }
+      .navWrap{ gap: 8px; }
+      .nav{ gap: 6px; }
+      .nav a{ padding: 7px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====== Standalone header/nav ====== -->
+  <div class="siteHeader">
+    <div class="navWrap">
+      <a class="logo" href="/index.html" aria-label="Aqualen Studio Home">
+      <img src="/assets/img/logo-512_512.webp" alt="Aqualen Studio logo" width="34" height="34" />
+      <div><div class="t1">Aqualen Studio</div></div>
+      </a>
+
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a href="/index.html">Home</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/devlog.html">News / Devlog</a>
+        <a href="/demo-rogue.html" class="active">Web Demo</a>
+        <a href="/about.html">About</a>
+
+        <div class="lang" aria-label="Language">
+          <button type="button" class="on" id="langEN">EN</button>
+          <button type="button" id="langJA">JA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Demo content ====== -->
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="pill">Aqualen Demo</div>
+        <div>
+          <div style="font-weight:800; letter-spacing:.2px;">Capy Survival</div>
+          <div style="font-size:12px;color:var(--muted);">Survive · Level Up · Pick 1 of 3</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn" id="btnPause">Pause</button>
+        <button class="btn primary" id="btnRestart">Restart</button>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="hud">
+        <span><b>Time</b>: <span id="uiTime">0:00</span></span>
+        <span><b>Level</b>: <span id="uiLevel">1</span></span>
+        <span><b>Score</b>: <span id="uiScore">0</span></span>
+        <span><b>Best</b>: <span id="uiBest">0</span></span>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div>
+          <div style="font-size:12px;color:var(--muted); margin-bottom:4px;">HP</div>
+          <div class="bar hp"><i id="uiHpBar" style="width:100%"></i></div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--muted); margin-bottom:4px;">XP</div>
+          <div class="bar"><i id="uiXpBar" style="width:0%"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="game"></canvas>
+      <div class="touchHint" id="touchHint">Touch & drag to move · Double-tap = dash</div>
+
+      <div class="overlay" id="overlay">
+        <div class="modal">
+          <h2 id="overlayTitle">Level Up — Choose one</h2>
+          <div class="cards" id="cards"></div>
+          <div class="help">
+            <div>Combo tip: <b>Multi-shot</b> + <b>Pierce</b> + <b>Fire rate</b></div>
+            <div style="opacity:.8;">Press <b>1/2/3</b> to pick</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="overGame">
+        <div class="modal">
+          <h2 style="margin-bottom:8px;">Game Over</h2>
+          <div style="color:var(--muted); margin-bottom:12px;">
+            Score: <b id="goScore">0</b> · Best: <b id="goBest">0</b>
+          </div>
+          <button class="btn primary" id="btnAgain">Play again</button>
+          <div class="help" style="justify-content:flex-start;">
+            <div>WASD / Arrows · Mobile drag · Double-tap dash</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:10px; color:var(--muted); font-size:12px;">
+      Images are optional. To use art, drop files into <code>/assets/img/</code> and set paths in <code>rogue-survivor.js</code>.
+    </div>
+  </div>
+
+  <!-- ====== Standalone footer ====== -->
+  <footer class="siteFooter">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+      <div>© <span id="yy"></span> Aqualen Studio · Joytoart Gaming Ltd (Cyprus, EU)</div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById("yy").textContent = new Date().getFullYear();
+
+    // simple language toggle (optional placeholder)
+    const enBtn = document.getElementById("langEN");
+    const jaBtn = document.getElementById("langJA");
+    enBtn.addEventListener("click", ()=>{ enBtn.classList.add("on"); jaBtn.classList.remove("on"); });
+    jaBtn.addEventListener("click", ()=>{ jaBtn.classList.add("on"); enBtn.classList.remove("on"); });
+  </script>
+
+  <script src="/assets/js/rogue-survivor.js"></script>
+</body>
+</html>
