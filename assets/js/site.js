@@ -11,9 +11,9 @@
       nav_contact: "Contact",
 
       hero_kicker: "AQUALEN STUDIO",
-      hero_title: "Oceans, Ruins & Quiet Catastrophes",
+      hero_title: "Depth Over Noise",
       hero_desc:
-        "An indie game & worldbuilding label under Joytoart Gaming Ltd. (Cyprus, EU). Eastern minimalism, mysterious worlds, sharp systems.",
+        "Eastern minimalism, mysterious worlds.",
       cta_primary: "View Projects",
       cta_secondary: "Play Web Demo",
       cta_contact: "Contact",

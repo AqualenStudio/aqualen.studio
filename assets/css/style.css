@@ -106,6 +106,15 @@ header{
   box-shadow: var(--shadow);
   overflow:hidden;
 }
+/* TRAILER 区域：确保按钮和内容不被裁剪 */
+section[aria-labelledby="trailer-title"] .card{
+  overflow:visible;
+  padding:0;
+}
+section[aria-labelledby="trailer-title"] #yt-wrap{
+  overflow:hidden;
+  border-radius: var(--radius);
+}
 .card.pad{padding:18px}
 .kicker{
   font-size:12px;
@@ -133,6 +142,15 @@ p{margin: 10px 0}
 }
 .btn:hover{transform: translateY(-1px)}
 .small{font-size:13px}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 980px){
+  .grid{ grid-template-columns: 1fr; }
+}
 
 .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
 @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
@@ -192,9 +210,11 @@ footer{
   opacity:0;
   transform: scale(1.01);
   transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
 }
 .carousel .slide[aria-hidden="false"]{
   opacity:1; transform: scale(1);
+  pointer-events: auto;
 }
 .carousel .slide img{
   width:100%; height:100%;
@@ -212,7 +232,12 @@ footer{
 .carousel .cap .txt{max-width: 72%}
 .carousel .cap h2{margin:0; font-size: 18px}
 .carousel .cap p{margin:6px 0 0; font-size: 13px; color: var(--muted)}
-.carousel .dots{display:flex; gap:6px; justify-content:flex-end}
+.carousel .dots{
+  display:flex; gap:6px; justify-content:flex-end;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
 .carousel .dot{
   width: 28px; height: 6px;
   border-radius: 999px;
@@ -231,94 +256,13 @@ footer{
 .prose h2{margin: 18px 0 8px}
 .prose ul{margin: 8px 0 12px}
 .prose li{margin: 6px 0}
-/* =================
-   HERO CAROUSEL FIXLEGACY CAROUSEL (unused)
-   old flex-based carousel
-   ================= */
 
-.card.hero-media {
-  height: min(60vh, 480px);
-}
-
-.carousel {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.carousel-track {
-  height: 100%;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  height: 100%;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ---- carousel compatibility patch (for carousel-slide / carousel-dots / carousel-btn) ---- */
-
-.carousel-track{
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transform: scale(1.01);
-  transition: opacity .45s ease, transform .45s ease;
-}
-
-/* JS 会切 aria-hidden，跟你原 CSS 一样的逻辑 */
-.carousel-slide[aria-hidden="false"]{
-  opacity:1;
-  transform: scale(1);
-}
-
-.carousel-slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter: contrast(1.05) saturate(1.05);
-}
-
-/* dots 容器 */
-.carousel-dots{
-  display:flex;
-  gap:6px;
-  justify-content:flex-end;
-  align-items:center;
-}
-
-/* 你 JS 生成的 dot 本来就是 .dot，这里保持一致 */
-.carousel-dots .dot{
-  width: 28px;
-  height: 6px;
-  border-radius: 999px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.04);
-  cursor:pointer;
-}
-.carousel-dots .dot[aria-selected="true"]{
-  background: linear-gradient(90deg, rgba(143,211,255,.55), rgba(185,166,255,.45));
-  border-color: rgba(255,255,255,.22);
-}
-
-/* prev/next 按钮：防止被盖住或看不见 */
+/* Carousel buttons */
 .carousel-btn{
   position:absolute;
   top:50%;
   transform: translateY(-50%);
-  z-index: 5;
+  z-index: 10;
   width: 40px;
   height: 40px;
   border-radius: 999px;
@@ -326,6 +270,7 @@ footer{
   background: rgba(0,0,0,.25);
   color: #fff;
   cursor:pointer;
+  pointer-events: auto;
 }
 .carousel-btn.prev{ left: 12px; }
 .carousel-btn.next{ right: 12px; }
@@ -346,7 +291,7 @@ footer{
 }
 
 /* 2️⃣ 左侧：艺术感窄卡 */
-.card.pad {
+.hero .card.pad {
   border-radius: 22px;
   backdrop-filter: blur(14px);
   background: linear-gradient(
@@ -383,16 +328,14 @@ footer{
 
 /* 4️⃣ Carousel 本体吃满 16:9 */
 .hero .carousel,
-.hero .carousel-track,
-.hero .carousel-slide {
+.hero .carousel .track {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 /* 5️⃣ 图片：不裁切、不拉伸 */
-.hero .carousel-slide img {
-  width: 100%;
-  height: 100%;
+.hero .carousel .slide img {
   object-fit: contain;   /* 如果你想铺满可改成 cover */
   background: #0b0d12;   /* 留黑边更电影感 */
 }
@@ -408,7 +351,7 @@ footer{
 }
 
 /* 7️⃣ Dot 靠右下，不挡画面 */
-.hero .carousel-dots {
+.hero .carousel .dots {
   position: absolute;
   right: 20px;
   bottom: 16px;
@@ -423,4 +366,34 @@ footer{
   .hero .card.hero-media {
     aspect-ratio: 16 / 9;
   }
+}
+
+/* =========================================================
+   FEATURED 区域修复：移除玻璃装饰效果
+   修复圆角玻璃残影泄漏问题
+========================================================= */
+/* 选择 Featured 区域（通过紧跟在 hero 之后的 section） */
+section.hero + section.container .card.pad,
+section[aria-labelledby="featured-title"] .card.pad {
+  /* 移除 hero 区域的玻璃装饰效果 */
+  backdrop-filter: none;
+  background: rgba(16,18,26,.78);
+  border-radius: var(--radius);
+}
+
+/* 确保 Featured 区域不溢出，防止装饰层泄漏 */
+section.hero + section.container,
+section[aria-labelledby="featured-title"] {
+  overflow: visible;
+  position: relative;
+  isolation: isolate; /* 创建新的 stacking context，隔离装饰层 */
+}
+
+/* 禁用 Featured 区域 card 的伪元素装饰（如果有） */
+section.hero + section.container .card.pad::before,
+section.hero + section.container .card.pad::after,
+section[aria-labelledby="featured-title"] .card.pad::before,
+section[aria-labelledby="featured-title"] .card.pad::after {
+  display: none;
+  content: none;
 }
