@@ -23,14 +23,19 @@
       sec_latest: "Latest",
       sec_latest_desc: "Short updates, dev notes, release milestones.",
 
+      featured_stellum: "Aqualen Studio's current project. More details will be revealed as development progresses.",
       p_inkighter_title: "Inkighter (Steam)",
       p_inkighter_desc: "Published. A stylized action experience forged from ink and resolve.",
+      p_stellum_title: "Stellum",
+      p_stellum_desc: "Current project. Details will be revealed as development progresses.",
       p_capy_title: "Capy Strike (iOS)",
-      p_capy_desc: "Launching soon. Cute capy energy, fast sessions, clean UX.",
+      p_capy_desc: "On hold. This project may return in the future.",
       p_switch_title: "Future Console Title",
       p_switch_desc: "A long-arc project heading toward Switch-class platforms.",
 
       badge_published: "Published",
+      badge_current: "Current",
+      badge_on_hold: "On hold",
       badge_soon: "Launching soon",
       badge_future: "Future",
 
@@ -59,14 +64,19 @@
       sec_latest: "最新情報",
       sec_latest_desc: "短いアップデート、開発メモ、リリース進捗。",
 
+      featured_stellum: "Aqualen Studioの現在のプロジェクト。開発の進展に合わせて詳細を公開します。",
       p_inkighter_title: "Inkighter（Steam）",
       p_inkighter_desc: "配信中。インクと意志で切り拓くスタイライズド・アクション。",
+      p_stellum_title: "Stellum",
+      p_stellum_desc: "現在開発中のプロジェクト。詳細は開発の進展に合わせて公開します。",
       p_capy_title: "Capy Strike（iOS）",
-      p_capy_desc: "近日公開。かわいい×スピーディ、ミニマルUI。",
+      p_capy_desc: "保留中。将来的に再開する可能性があります。",
       p_switch_title: "将来のコンソール作品",
       p_switch_desc: "Switchクラスを見据えた長期プロジェクト。",
 
       badge_published: "配信中",
+      badge_current: "開発中",
+      badge_on_hold: "保留中",
       badge_soon: "近日",
       badge_future: "将来",
 
