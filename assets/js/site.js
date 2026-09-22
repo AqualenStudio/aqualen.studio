@@ -6,7 +6,7 @@
       nav_home: "Home",
       nav_projects: "Projects",
       nav_devlog: "News / Devlog",
-      nav_demo: "Web Demo",
+      nav_demo: "Prototype",
       nav_about: "About",
       nav_contact: "Contact",
 
@@ -15,11 +15,11 @@
       hero_desc:
         "Eastern minimalism, mysterious worlds.",
       cta_primary: "View Projects",
-      cta_secondary: "Play Web Demo",
+      cta_secondary: "Play Prototype",
       cta_contact: "Contact",
 
       sec_feat: "Featured",
-      sec_feat_desc: "Current and upcoming titles across Steam, iOS, and future consoles.",
+      sec_feat_desc: "Stellum, selected released work, and the studio's development log.",
       sec_latest: "Latest",
       sec_latest_desc: "Short updates, dev notes, release milestones.",
 
@@ -30,14 +30,14 @@
       p_stellum_desc: "Current project. Details will be revealed as development progresses.",
       p_capy_title: "Capy Strike (iOS)",
       p_capy_desc: "On hold. This project may return in the future.",
-      p_switch_title: "Future Console Title",
-      p_switch_desc: "A long-arc project heading toward Switch-class platforms.",
+      p_switch_title: "Long-term Project",
+      p_switch_desc: "A longer-horizon project kept on the studio's public roadmap.",
 
       badge_published: "Published",
       badge_current: "Current",
       badge_on_hold: "On hold",
       badge_soon: "Launching soon",
-      badge_future: "Future",
+      badge_future: "Long-term",
 
       footer_line1: "© " + new Date().getFullYear() + " Aqualen Studio. All rights reserved.",
       footer_line2: "Aqualen Studio is a label under Joytoart Gaming Ltd. (Cyprus, EU).",
@@ -47,7 +47,7 @@
       nav_home: "ホーム",
       nav_projects: "プロジェクト",
       nav_devlog: "ニュース / 開発ログ",
-      nav_demo: "Webデモ",
+      nav_demo: "プロトタイプ",
       nav_about: "会社情報",
       nav_contact: "連絡先",
 
@@ -56,11 +56,11 @@
       hero_desc:
         "Joytoart Gaming Ltd.（キプロス/EU）傘下のインディーレーベル。東洋ミニマルと神秘性、そしてキレのあるゲームシステム。",
       cta_primary: "プロジェクトを見る",
-      cta_secondary: "Webデモで遊ぶ",
+      cta_secondary: "プロトタイプを遊ぶ",
       cta_contact: "お問い合わせ",
 
       sec_feat: "注目",
-      sec_feat_desc: "Steam / iOS、そして将来のコンソールへ。",
+      sec_feat_desc: "Stellum、リリース済み作品、そして開発ログ。",
       sec_latest: "最新情報",
       sec_latest_desc: "短いアップデート、開発メモ、リリース進捗。",
 
@@ -71,14 +71,14 @@
       p_stellum_desc: "現在開発中のプロジェクト。詳細は開発の進展に合わせて公開します。",
       p_capy_title: "Capy Strike（iOS）",
       p_capy_desc: "保留中。将来的に再開する可能性があります。",
-      p_switch_title: "将来のコンソール作品",
-      p_switch_desc: "Switchクラスを見据えた長期プロジェクト。",
+      p_switch_title: "長期プロジェクト",
+      p_switch_desc: "スタジオの公開ロードマップにある長期プロジェクト。",
 
       badge_published: "配信中",
       badge_current: "開発中",
       badge_on_hold: "保留中",
       badge_soon: "近日",
-      badge_future: "将来",
+      badge_future: "長期計画",
 
       footer_line1: "© " + new Date().getFullYear() + " Aqualen Studio. All rights reserved.",
       footer_line2: "Aqualen Studio is a label under Joytoart Gaming Ltd.（キプロス/EU）",
