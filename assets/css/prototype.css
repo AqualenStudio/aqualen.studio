@@ -1,0 +1,298 @@
+/* 样式限定于原型，保留现有游戏 DOM 接口。 */
+.prototype-heading {
+  padding:36px 0
+}
+
+.prototype-heading .eyebrow {
+  color:var(--gold);
+  margin:15px 0
+}
+
+.prototype-heading h1 {
+  font-size:clamp(40px,5vw,62px)
+}
+
+.prototype-heading>p:last-child {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:18px
+}
+
+.prototype-shell {
+  padding-bottom:70px
+}
+
+.prototype-shell .topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-block:1px solid var(--line);
+  padding:16px 0
+}
+
+.prototype-shell .hud {
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  font-size:12px
+}
+
+.prototype-shell .hud b {
+  color:var(--gold);
+  margin-right:8px
+}
+
+.game-buttons {
+  display:flex;
+  gap:10px
+}
+
+.game-buttons .button {
+  min-height:44px;
+  padding:8px 18px
+}
+
+.game-bars {
+  display:flex;
+  gap:22px;
+  align-items:center;
+  padding:18px 0
+}
+
+.game-bars>div {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px
+}
+
+.bar {
+  position:relative;
+  width:160px;
+  height:6px;
+  background:rgba(255,255,255,.1);
+  overflow:hidden
+}
+
+.bar>i {
+  position:absolute;
+  inset:0;
+  background:#d1b78a;
+  display:block
+}
+
+.bar.hp>i {
+  background:#c88b7d
+}
+
+.game-controls {
+  font-size:10px;
+  color:var(--muted);
+  margin-left:auto
+}
+
+.prototype-shell .stage {
+  height:min(72vh,720px);
+  min-height:380px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#101f2b;
+  touch-action:none
+}
+
+.prototype-shell canvas {
+  display:block;
+  width:100%;
+  height:100%
+}
+
+.prototype-shell .overlay {
+  position:absolute;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(3,12,19,.8);
+  padding:18px;
+  overflow:auto
+}
+
+.prototype-shell .overlay.show {
+  display:flex
+}
+
+.prototype-shell .modal {
+  width:min(720px,100%);
+  padding:24px;
+  border:1px solid var(--gold);
+  background:var(--deep)
+}
+
+.prototype-shell .modal h2 {
+  font-size:28px;
+  margin-bottom:18px
+}
+
+.prototype-shell .modal p {
+  margin-bottom:18px
+}
+
+.prototype-shell .cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px
+}
+
+.prototype-shell .card {
+  background:#1c303e;
+  border:1px solid var(--line);
+  padding:16px;
+  cursor:pointer;
+  min-height:100px
+}
+
+.prototype-shell .card:hover {
+  border-color:var(--gold);
+  background:#2a414e
+}
+
+.prototype-shell .card .t {
+  font-weight:600;
+  color:var(--gold);
+  margin-bottom:6px
+}
+
+.prototype-shell .card .d {
+  font-size:12px;
+  color:var(--muted)
+}
+
+/* 森林手记：官网纹章语言的暖绿变体，游戏视野与网页正文分开。 */
+.prototype-heading > p:last-child > span { display: block; margin-top: 6px; opacity: .7; }
+.prototype-shell { --gold: #e3c898; --line: rgba(221,209,168,.3); }
+.prototype-shell .stage { height: clamp(480px, 68vh, 650px); border: 1px solid #71806a; background: #334635; isolation: isolate; }
+.prototype-shell .stage:focus-visible { outline: 2px solid #e3c898; outline-offset: 4px; }
+.prototype-shell .overlay { z-index: 5; background: rgba(15,32,26,.64); backdrop-filter: blur(5px); }
+.prototype-shell .modal {
+  max-height: 100%; overflow-y: auto; overscroll-behavior: contain;
+  background: linear-gradient(145deg, #263c32, #14271f);
+  border: 1px solid #a89a72; outline: 1px solid rgba(221,209,168,.2); outline-offset: -7px;
+  padding: 32px; box-shadow: 0 20px 80px #0b1d2980; color: #f6eedb;
+}
+.prototype-shell .modal .eyebrow { color: #d7c89d; font-size: 9px; margin-bottom: 10px; }
+.prototype-shell .modal h2 { font-size: clamp(28px,3vw,42px); }
+.prototype-shell .modal p { font-size: 13px; color: #d0d8c5; }
+.prototype-shell .start-card, .prototype-shell .pause-card, .prototype-shell .end-card { text-align: center; max-width: 610px; }
+.prototype-shell .start-card > img { width: 86px; height: 86px; object-fit: contain; margin: -10px auto 0; }
+.prototype-shell .start-card h2 { margin-bottom: 12px; }
+.prototype-shell .control-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; font-size: 10px; color: #c3cdb7; margin: 18px 0 24px; }
+.prototype-shell .control-legend b { letter-spacing: .1em; color: #f2deb0; }
+.prototype-shell .load-status { margin: 10px 0 0; font-size: 10px !important; }
+.prototype-shell button:disabled { cursor: default; opacity: .5; }
+.prototype-shell .card { display: flex; flex-direction: column; align-items: flex-start; text-align: left; position: relative; color: #e5dcc5; background: linear-gradient(155deg,#354c3d,#23372e); min-height: 218px; padding: 22px 16px; transition: transform .2s, border-color .2s, background .2s; }
+.prototype-shell .card:before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(221,209,168,.12); pointer-events: none; }
+.prototype-shell .card:hover, .prototype-shell .card:focus-visible { transform: translateY(-4px); background: #3d5543; border-color: var(--gold); }
+.prototype-shell .card .t { display: block; font: 500 25px/1.15 var(--display-font); margin: 12px 0 8px; }
+.prototype-shell .card .d { display: block; color: #cbd4c0; line-height: 1.6; }
+.upgrade-icon { width: 40px; height: 40px; display: grid; place-items: center; font-size: 29px; color: #f0d7a1; border: 1px solid #a5976c; margin-bottom: 18px; }
+.upgrade-tier { font-size: 8px; letter-spacing: .1em; color: #c5c5a8; }
+.run-summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; border-block: 1px solid var(--line); padding: 22px 0; margin: 25px 0; font-size: 10px; color: #c9d1bb; }
+.run-summary b { display: block; font: 500 30px var(--display-font); color: #f4dfb2; }
+.prototype-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 18px; font-size: 10px; color: #aebcab; }
+.prototype-foot > :first-child { max-width: 75ch; }
+.game-notice { position: absolute; z-index: 3; top: 18px; left: 50%; transform: translate(-50%,-6px); max-width: calc(100% - 32px); width: max-content; background: rgba(25,45,33,.92); color: #f4e5bf; border: 1px solid #a49b70; padding: 9px 17px; font-size: 11px; text-align: center; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; }
+.game-notice.visible { opacity: 1; transform: translate(-50%,0); }
+.boss-banner { position: absolute; z-index: 2; top: 68px; width: min(300px,65%); left: 50%; transform: translateX(-50%); text-align: center; padding: 8px 14px; background: #1e3029d9; border: 1px solid #c6b284; font-size: 9px; letter-spacing: .18em; color: #f2ddb3; }
+.boss-banner .bar { width: 100%; height: 5px; margin-top: 6px; }
+.boss-banner .bar > i { background: #ce9670; }
+.touch-controls { position: absolute; inset: auto 20px 22px; z-index: 3; display: none; justify-content: space-between; align-items: center; pointer-events: none; }
+.joystick { width: 96px; height: 96px; border-radius: 50%; background: #203b2c66; border: 1px solid #fff3ca88; display: grid; place-items: center; pointer-events: auto; touch-action: none; }
+.joystick i { width: 42px; height: 42px; background: #e4d6a5a6; border: 1px solid #fff0bd; border-radius: 50%; pointer-events: none; }
+.dash-button { pointer-events: auto; touch-action: none; border: 1px solid #f0d4a1; background: #273f31dd; color: #f8e6bc; border-radius: 50%; width: 76px; height: 76px; font-size: 11px; letter-spacing: .1em; }
+.dash-button span { display: block; font-size: 8px; margin-top: 4px; opacity: .8; }
+.dash-button[aria-disabled=true] { opacity: .6; }
+.prototype-shell .touchHint { display: none; top: auto; bottom: 3px; left: 0; right: 0; text-align: center; padding: 2px; font-size: 8px; background: transparent; color: #fff2cf; }
+@media (pointer:coarse), (max-width:650px) {
+  .touch-controls { display: flex; }
+  .prototype-shell .touchHint { display: block; }
+}
+@media(max-width:650px) {
+  .prototype-shell .stage { height: 540px; min-height: 0; }
+  .prototype-shell .modal { padding: 22px 18px; }
+  .prototype-shell .card { min-height: 92px; padding: 12px 14px 12px 64px; }
+  .prototype-shell .card .t { margin: 5px 0; font-size: 22px; }
+  .upgrade-icon { position: absolute; left: 13px; top: 25px; width: 34px; height: 34px; font-size: 24px; margin: 0; }
+  .prototype-shell .modal .help { margin-top: 12px; font-size: 10px; }
+  .run-summary { grid-template-columns: repeat(2,1fr); }
+  .prototype-shell .start-card > img { width: 70px; height: 70px; }
+  .prototype-shell .control-legend { margin-block: 12px 20px; }
+  .game-notice { font-size: 10px; padding: 8px 12px; }
+}
+
+.prototype-shell .help {
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:18px
+}
+
+.prototype-shell .touchHint {
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  font-size:10px;
+  color:white;
+  background:rgba(8,20,28,.7);
+  padding:7px 12px;
+  pointer-events:none
+}
+
+.prototype-note {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:14px
+}
+
+@media(max-width:650px) {
+  .prototype-shell .topbar {
+    flex-wrap:wrap
+  }
+  .prototype-shell .hud {
+    gap:16px
+  }
+  .game-bars {
+    flex-wrap:wrap;
+    gap:12px
+  }
+  .game-controls {
+    width:100%;
+    margin-left:0
+  }
+  .bar {
+    width:110px
+  }
+  .prototype-shell .cards {
+    grid-template-columns:1fr
+  }
+  .prototype-shell .card {
+    min-height:92px;
+    padding:12px 14px 12px 64px
+  }
+  .prototype-shell .modal {
+    padding:22px 18px
+  }
+  .prototype-shell .modal h2 {
+    font-size:28px
+  }
+  .prototype-shell .help {
+    font-size:10px
+  }
+  .prototype-shell .overlay {
+    padding:10px
+  }
+}

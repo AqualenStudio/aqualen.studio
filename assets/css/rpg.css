@@ -1,0 +1,135 @@
+/* 幻想作品集：轻量明朝体、纹章与金属细边，不改变品牌的阅读层级。 */
+@font-face {
+  font-family: 'Aqualen Display';
+  src: url('/assets/fonts/cormorant-latin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aqualen Mincho';
+  src: url('/assets/fonts/noto-serif-jp.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --display-font: 'Aqualen Display', 'Aqualen Mincho', 'Yu Mincho', Georgia, serif;
+  --frame-light: rgba(225, 207, 170, .54);
+}
+h1, h2, h3, .wordmark { font-weight: 500; }
+h1, h2 { letter-spacing: -.025em; }
+.hero-content h1 { letter-spacing: -.035em; line-height: 1.04; }
+.hero-content h1 em { font-style: normal; font-weight: 500; }
+html[lang=ja] h1, html[lang=ja] h2, html[lang=ja] h3 {
+  letter-spacing: .055em;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.wordmark { letter-spacing: .12em; }
+.primary-nav > a[aria-current]:after {
+  width: 5px;
+  height: 5px;
+  left: calc(50% - 2px);
+  bottom: 0;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--line);
+}
+.language button[aria-pressed=true] { text-decoration: underline; text-underline-offset: 7px; }
+.button, .primary-nav .nav-contact {
+  isolation: isolate;
+  box-shadow: none;
+  transition: background .25s, color .25s, transform .18s, box-shadow .25s;
+}
+.button:before, .primary-nav .nav-contact:before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  pointer-events: none;
+  opacity: 1;
+  border: 1px solid var(--line);
+  background: transparent;
+  transition: background .25s, border-color .25s;
+}
+.button-gold:before { border-color: rgba(26,37,43,.3); }
+.button:hover:before, .nav-contact:hover:before { background: linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent); }
+.button:active, .primary-nav .nav-contact:active { transform: translateY(1px) scale(.985); }
+.button:focus-visible, .nav-contact:focus-visible { outline-offset: 5px; }
+.section-heading .eyebrow > span:first-child {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--paper-line);
+  margin-right: 10px;
+  font: 500 16px var(--display-font);
+  letter-spacing: 0;
+  background: linear-gradient(135deg, transparent 44%, rgba(128,97,57,.07) 45%, transparent 47%);
+}
+.section-heading { position: relative; }
+.section-heading:after {
+  content: '';
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  width: 76px;
+  height: 3px;
+  border-block: 1px solid var(--gold-dark);
+  opacity: .5;
+}
+.game-art { position: relative; }
+.game-art:after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid rgba(229,215,185,.3);
+  background:
+    linear-gradient(var(--gold),var(--gold)) left top / 22px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) left top / 1px 22px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom / 22px 1px no-repeat,
+    linear-gradient(var(--gold),var(--gold)) right bottom / 1px 22px no-repeat;
+  transition: inset .4s var(--ease), border-color .4s;
+}
+a:hover .game-art:after { inset: 17px; border-color: var(--frame-light); }
+.filter-bar button[aria-pressed=true]:before { content: '◆'; font-size: 7px; margin-right: 8px; }
+.media-dialog { outline: 1px solid var(--line); outline-offset: -7px; }
+.project-signal .text-link:hover { color: var(--gold); }
+.heading-star { text-shadow: 0 0 24px rgba(209,183,138,.25); }
+/* 反馈层不截获输入，不阻塞跳转，也不在界面中留下持久节点。 */
+.ui-spark {
+  position: fixed;
+  z-index: 10000;
+  width: 26px;
+  height: 26px;
+  margin: -13px;
+  pointer-events: none;
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 12px rgba(209,183,138,.25);
+  animation: seal-touch .45s ease-out forwards;
+}
+.ui-spark:after { content: ''; position: absolute; inset: 6px; border: 1px solid var(--gold); }
+@keyframes seal-touch {
+  from { opacity: .8; transform: rotate(45deg) scale(.35); }
+  to { opacity: 0; transform: rotate(65deg) scale(1.6); }
+}
+@media(max-width:800px) {
+  .primary-nav > a[aria-current]:after { left: auto; right: 8px; bottom: calc(50% - 2px); }
+  .game-art:after { inset: 8px; }
+  .section-heading:after { bottom: -12px; }
+}
+html[lang=ja] .hero-intro { max-width: 28em; line-break: strict; }
+@media(max-width:540px) {
+  html[lang=ja] .hero-content h1, html[lang=ja] .hero-content h1 em {
+    font-size: clamp(27px, 7.7vw, 36px);
+    letter-spacing: .025em;
+    line-height: 1.65;
+  }
+}
+@media(max-width:380px) {
+  .menu-ready .menu-toggle { gap: 9px; padding-inline: 9px; font-size: 10px; }
+  .wordmark { font-size: 20px; }
+}
+html.motion-reduced .ui-spark { display: none; }
+@media(prefers-reduced-motion:reduce) { .ui-spark { display: none; } }

@@ -1,191 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Aqualen Studio — Stellum</title>
-  <meta name="description" content="Aqualen Studio is an independent game studio developing Stellum and other distinctive interactive worlds." />
-  <meta name="theme-color" content="#0b0d12" />
-
-  <link rel="icon" href="/assets/img/logo-512_512.webp" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Independent worlds — Aqualen Studio</title>
+  <meta name="description" content="Aqualen Studio — independent games, distinctive worlds. Discover Stellum, our current project, and Inkighter, available on Steam.">
+  <meta name="theme-color" content="#101f2b">
+  <link rel="canonical" href="https://aqualen.studio/">
+  <link rel="icon" href="/assets/img/logo-512_512.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aqualen Studio">
+  <meta property="og:title" content="Independent worlds — Aqualen Studio">
+  <meta property="og:description" content="Aqualen Studio — independent games, distinctive worlds. Discover Stellum, our current project, and Inkighter, available on Steam.">
+  <meta property="og:url" content="https://aqualen.studio/">
+  <meta property="og:image" content="https://aqualen.studio/assets/img/logo-512_512.webp">
+  <meta name="twitter:card" content="summary">
+  <link rel="preload" as="image" href="/assets/img/hero-04.webp">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preload" href="/assets/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/rpg.css">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Aqualen Studio — Stellum" />
-  <meta property="og:description" content="Aqualen Studio is developing Stellum and other distinctive interactive worlds." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aqualen.studio/" />
-  <meta property="og:image" content="https://aqualen.studio/assets/img/og-cover.webp" />
-  <link rel="canonical" href="https://aqualen.studio/" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <script src="/assets/js/site.js" defer></script>
 </head>
-
-<body>
-<header>
-  <div class="container">
-    <nav class="nav">
-      <a class="brand" href="/" aria-label="Aqualen Studio home">
-        <span class="mark" aria-hidden="true">⟡</span>
-        <span class="brand-text">Aqualen Studio</span>
-      </a>
-
-        <!-- Language toggle -->
-        <div class="lang" role="group" aria-label="Language">
-          <button class="lang-btn" data-lang="en" type="button">EN</button>
-          <button class="lang-btn" data-lang="ja" type="button">日本語</button>
-        </div>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="card pad hero-copy">
-        <div class="kicker" data-i18n="hero_kicker">AQUALEN STUDIO</div>
-        <h1 data-i18n="hero_title">Depth Over Noise</h1>
-        <p class="muted" data-i18n="hero_desc">
-          An indie game &amp; 
-          Eastern minimalism.
-        </p>
-
-        <div class="btns">
-          <a class="btn primary" href="/projects.html" data-i18n="cta_primary">View Projects</a>
-          <a class="btn" href="/demo-rogue.html" data-i18n="cta_secondary">Play Prototype</a>
-        </div>
-
-        <div class="spacer"></div>
-
-        <div class="notice" data-i18n="hero_tip">
-        </div>
-      </div>
-
-      <!-- Carousel -->
-<div class="card hero-media">
-  <div class="carousel" data-carousel tabindex="0">
-    <div class="track">
-      <div class="slide is-active">
-        <img src="/assets/img/hero-01.webp" alt="Aqualen Studio — visual 1" loading="eager" decoding="async" />
-      </div>
-      <div class="slide">
-        <img src="/assets/img/hero-02.webp" alt="Aqualen Studio — visual 2" loading="lazy" decoding="async" />
-      </div>
-      <div class="slide">
-        <img src="/assets/img/hero-03.webp" alt="Aqualen Studio — visual 3" loading="lazy" decoding="async" />
-      </div>
-      <div class="slide">
-        <img src="/assets/img/hero-04.webp" alt="Aqualen Studio — visual 4" loading="lazy" decoding="async" />
-      </div>
-      <div class="slide">
-        <img src="/assets/img/hero-05.webp" alt="Aqualen Studio — visual 5" loading="lazy" decoding="async" />
-      </div>
+<body class="home-page">
+  <a class="skip-link" href="#main"><span data-ja="本文へ移動" >Skip to content</span></a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Aqualen Studio home"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a>
+      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false"><span data-ja="メニュー" >Menu</span><span aria-hidden="true">＋</span></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="/" aria-current="page"><small aria-hidden="true">01</small><span data-ja="ホーム" >Home</span></a>
+        <a href="/projects.html" ><small aria-hidden="true">02</small><span data-ja="作品" >Games</span></a>
+        <a href="/devlog.html" ><small aria-hidden="true">03</small><span data-ja="開発日誌" >Journal</span></a>
+        <a href="/about.html" ><small aria-hidden="true">04</small><span data-ja="スタジオ" >Studio</span></a>
+        <div class="language" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="ja" aria-pressed="false">JP</button></div>
+        <a class="nav-contact" href="/about.html#contact"><span data-ja="お問い合わせ" >Get in touch</span><span class="arrow" aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide"></button>
-    <button class="carousel-btn next" type="button" aria-label="Next slide"></button>
-
-    <div class="dots" aria-label="Slide dots"></div>
-  </div>
-</div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="home-hero" aria-labelledby="hero-title">
+      <div class="hero-picture"><img src="/assets/img/hero-04.webp" alt="Aqualen Studio ink-style illustration of a swordswoman" width="1920" height="1080" fetchpriority="high"></div>
+      <div class="hero-grain" aria-hidden="true"></div><span class="hero-side-label" aria-hidden="true">IMAGINATION, WITHOUT LIMITS.</span>
+      <div class="container hero-content"><p class="eyebrow"><span class="tiny-diamond" aria-hidden="true">◆</span> AQUALEN STUDIO / INDEPENDENT GAMES</p><h1 id="hero-title"><span data-ja="想像の、その先へ。" >Worlds beyond</span><em><span data-ja="心に残る世界を。" >the ordinary.</span></em></h1><p data-ja="独自の世界、研ぎ澄まされたデザイン。
+私たちらしいゲームを。" class="hero-intro">Distinctive worlds. Deliberate design.
+Games with a voice of their own.</p><div class="button-row"><a class="button button-gold" href="/projects.html"><span data-ja="作品を見る" >Explore our games</span><span class="arrow" aria-hidden="true">↗</span></a><a class="button button-outline" href="/about.html"><span data-ja="スタジオについて" >Meet the studio</span><span class="arrow" aria-hidden="true">↗</span></a></div></div>
+      <div class="container hero-baseline"><a href="#selected-games" class="scroll-cue"><span aria-hidden="true">↓</span><span data-ja="もっと見る" >Discover more</span></a><span class="hero-caption">AQUALEN STUDIO · <span data-ja="イラストコレクション" >Illustration collection</span></span><span class="hero-edition" aria-hidden="true">01 — ∞</span></div>
+    </section>
+    <aside class="project-signal"><div class="container signal-inner"><span class="signal-dot" aria-hidden="true"></span><span class="eyebrow"><span data-ja="現在の取り組み" >In focus</span></span><strong>Stellum</strong><p data-ja="次のチャプターが、かたちになる。" >Our next chapter is taking shape.</p><a class="text-link" href="/project-stellum.html"><span data-ja="プロジェクトを見る" >Discover the project</span><span class="arrow" aria-hidden="true">↗</span></a></div></aside>
+    <section class="paper-section section" id="selected-games"><div class="container"><div class="section-heading"><div><p class="eyebrow"><span>01</span> / AQUALEN STUDIO</p><h2 data-ja="それぞれの世界を、ひとつのスタジオから。" >Different worlds. One studio.</h2><p class="section-description"><span data-ja="すべての作品に、私たちらしい創作を。" >An independent spirit, in every game we make.</span></p></div><a class="text-link" href="/projects.html"><span data-ja="すべて見る" >View all</span><span class="arrow" aria-hidden="true">↗</span></a></div><div class="games-grid home-games"><a href="/project-stellum.html" class="game-card stellum-card" data-status="development"><div class="game-art stellum-art"><div class="orbit" aria-hidden="true"><i></i><i></i><i></i><span>✦</span></div><span class="art-index">AQUALEN / CURRENT PROJECT</span><span class="stellum-word">Stellum<span class="word-rule"></span></span><span class="art-caption"><span data-ja="開発中" >In development</span></span></div><div class="game-meta"><div><p class="eyebrow">01 / <span data-ja="現在のプロジェクト" >Current project</span></p><h3>Stellum</h3><p><span data-ja="Aqualen Studioが現在注力する、新たなプロジェクト。" >Our current focus. A new project taking shape at Aqualen Studio.</span></p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a><a href="/project-inkighter.html" class="game-card inkighter-card" data-status="released"><div class="game-art"><img src="/assets/img/hero-03.webp" alt="Inkighter illustrated swordsman in a bamboo hat" width="1920" height="1084" loading="lazy"><span class="status on-image"><span data-ja="発売中 · Steam" >Released · Steam</span></span></div><div class="game-meta"><div><p class="eyebrow">02 / <span data-ja="発売中の作品" >Released work</span></p><h3>Inkighter</h3><p data-ja="墨と意志から生まれる、アクション体験。" >An action experience forged from ink and resolve.</p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a></div><a href="/project-capy-strike.html" class="archive-strip"><img src="/assets/img/project-capy-strike-02.webp" width="1920" height="1080" alt="Capy Strike" loading="lazy"><span><span class="eyebrow"><span data-ja="アーカイブから" >From the archive</span></span><strong>Capy Strike</strong></span><span class="status "><span data-ja="開発休止中" >On hold</span></span><span class="archive-copy"><span data-ja="いつかのために残す、もうひとつのチャプター。" >An earlier chapter, kept for another day.</span></span><span class="arrow" aria-hidden="true">↗</span></a></div></section>
+    <section class="film-section"><div class="container film-grid"><div class="film-copy"><p class="eyebrow">THE SCREENING ROOM</p><h2 data-ja="墨、刃、
+そして意志。" >Ink. Blades.
+Resolve.</h2><p><span data-ja="Steamで発売中のアクション作品、Inkighterの世界へ。" >Step into Inkighter, our released action title on Steam.</span></p><a class="text-link" href="/project-inkighter.html"><span data-ja="Inkighterを見る" >Discover Inkighter</span><span class="arrow" aria-hidden="true">↗</span></a></div><a class="film-poster" data-video href="https://www.youtube.com/watch?v=JokkS_4qgRA" aria-label="Watch Inkighter official trailer"><img src="/assets/img/hero-02.webp" alt="Inkighter archer illustration" width="1920" height="1080" loading="lazy"><span class="play-icon" aria-hidden="true">▷</span><span class="film-label">INKIGHTER — <span data-ja="公式トレーラー" >Official trailer</span> <span class="arrow" aria-hidden="true">↗</span></span></a></div></section>
+    <section class="section journal-section"><div class="container"><div class="section-heading"><div><p class="eyebrow"><span>02</span> / AQUALEN STUDIO</p><h2 data-ja="スタジオからのお便り。" >Notes from the studio.</h2><p class="section-description"><span data-ja="制作のこと、日々のこと、そしてこれから。" >The work, the process, and what comes next.</span></p></div><a class="text-link" href="/devlog.html"><span data-ja="すべて見る" >View all</span><span class="arrow" aria-hidden="true">↗</span></a></div><a class="news-row" href="/post-2026-01-13.html"><time datetime="2026-01-13">2026.01.13</time><span class="news-type"><span data-ja="スタジオ" >Studio</span></span><h3 data-ja="Aqualen Studio、新たなホームへ" >A new home for Aqualen Studio</h3><span class="arrow" aria-hidden="true">↗</span></a></div></section>
+    <section class="studio-section"><div class="studio-image"><img src="/assets/img/hero-01.webp" width="1920" height="1280" alt="Aqualen Studio brushwork swordswoman illustration" loading="lazy"></div><div class="studio-copy"><p class="eyebrow">03 / THE STUDIO</p><h2 data-ja="静けさの中に、
+深さを。" >Depth
+over noise.</h2><p data-ja="余白、静けさ、奥行きから生まれる独自の世界。未知への好奇心を大切にする、インディーゲームスタジオです。" >We build stylized worlds shaped by restraint, silence, and depth. An independent game studio with a fascination for the unfamiliar.</p><a class="text-link" href="/about.html"><span data-ja="Aqualenについて" >The story behind Aqualen</span><span class="arrow" aria-hidden="true">↗</span></a></div></section>
+    <section class="contact-band container"><div><p class="eyebrow">LET’S CONNECT</p><h2 data-ja="新しい出会いは、ひとつの対話から。" >Good things start with a conversation.</h2></div><a class="button button-gold" href="mailto:contact@aqualen.studio"><span data-ja="お問い合わせ" >Get in touch</span><span class="arrow" aria-hidden="true">↗</span></a></section></main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div><a class="brand" href="/"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a><p data-ja="小さな謎から、世界が広がる。" class="footer-motto">A little mystery. A world of possibility.</p></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="探索" >Explore</span></p><a class="text-link" href="/projects.html"><span data-ja="作品一覧" >Our games</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/devlog.html"><span data-ja="開発日誌" >Journal</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/demo-rogue.html"><span data-ja="プレイできるプロトタイプ" >Playable prototype</span><span class="arrow" aria-hidden="true">↗</span></a></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="つながる" >Connect</span></p><a class="text-link" href="mailto:contact@aqualen.studio"><span data-ja="ビジネス・取材" >Business &amp; press</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/AqualenStudio"><span data-ja="GitHub" >GitHub</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/about.html"><span data-ja="スタジオについて" >About the studio</span><span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
-  </section>
-
-  <section class="container">
-    <div class="kicker" data-i18n="featured_kicker">FEATURED</div>
-
-    <div class="grid">
-      <a class="card pad hover" href="/project-stellum.html">
-        <div class="tag">CURRENT PROJECT</div>
-        <h3>Stellum</h3>
-        <p class="muted" data-i18n="featured_stellum">
-          Aqualen Studio's current project. More details will be revealed as development progresses.
-        </p>
-      </a>
-
-      <a class="card pad hover" href="/project-inkighter.html">
-        <div class="tag">RELEASED · STEAM</div>
-        <h3>Inkighter</h3>
-        <p class="muted" data-i18n="featured_inkighter">
-          A published stylized action experience forged from ink and resolve.
-        </p>
-      </a>
-    </div>
-  </section>
-
-  <!-- ================= TRAILER ================= -->
-  <section class="container" aria-labelledby="trailer-title">
-    <div class="kicker" id="trailer-title">INKIGHTER · OFFICIAL TRAILER</div>
-
-    <div class="card" style="overflow:hidden">
-      <div
-        id="yt-wrap"
-        style="
-          position:relative;
-          aspect-ratio:16/9;
-          background:rgba(255,255,255,.03);
-          display:flex;
-          align-items:center;
-          justify-content:center;
-        "
-      >
-        <button
-          id="yt-play"
-          class="btn primary"
-          type="button"
-          style="padding:12px 18px; font-size:15px;"
-          aria-label="Play Inkighter Trailer"
-        >
-          ▶ Play Trailer
-        </button>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="container footer">
-    <div class="muted">
-      <strong>Aqualen Studio</strong> · Joytoart Gaming Ltd. (Cyprus, EU)
-    </div>
-    <div class="footer-links">
-      <a href="/about.html#contact" data-i18n="footer_contact">Contact</a>
-      <a href="/privacy.html" data-i18n="footer_privacy">Privacy</a>
-    </div>
-    <p>Official website of Aqualen Studio. Open-source projects available on
-     <a href="https://github.com/AqualenStudio" target="_blank" rel="noopener"><strong>GitHub</strong></a>.
-    </p>
-  </div>
-</footer>
-
-<!-- Existing scripts -->
-<script src="/assets/js/site.js" defer></script>
-<script src="/assets/js/carousel.js" defer></script>
-
-<!-- ================= TRAILER SCRIPT ================= -->
-<script>
-  (function () {
-    const videoId = "JokkS_4qgRA"; // Inkighter trailer YouTube ID
-    const wrap = document.getElementById("yt-wrap");
-    const btn  = document.getElementById("yt-play");
-
-    if (!wrap || !btn) return;
-
-    btn.addEventListener("click", function () {
-      wrap.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
-          title="Inkighter official trailer"
-          style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      `;
-    });
-  })();
-</script>
+    <div class="container footer-bottom"><span>© <span data-year>2026</span> Aqualen Studio · Joytoart Gaming Ltd. · Cyprus, EU</span><div><a class="text-link" href="/privacy.html"><span data-ja="プライバシー" >Privacy</span><span class="arrow" aria-hidden="true">↗</span></a><button class="motion-toggle" type="button" aria-pressed="false" hidden><span data-ja="動きを抑える" >Reduce motion</span></button><a href="#main" class="back-top" aria-label="Back to top">↑</a></div></div>
+  </footer>
+  <dialog class="media-dialog" aria-labelledby="media-title"><div class="dialog-bar"><h2 id="media-title">Inkighter · Official trailer</h2><button type="button" class="dialog-close" aria-label="Close video">×</button></div><div class="video-mount"></div><p><a class="text-link" href="https://www.youtube.com/watch?v=JokkS_4qgRA"><span data-ja="YouTubeで見る" >Watch on YouTube</span><span class="arrow" aria-hidden="true">↗</span></a></p></dialog>
 
 </body>
 </html>

@@ -1,0 +1,10 @@
+import { writeFile, mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { pages } from '../site/pages.mjs';
+import { render } from '../site/layout.mjs';
+const root = new URL('../', import.meta.url);
+await mkdir(new URL('assets/css/', root), { recursive: true });
+for (const page of pages) await writeFile(new URL(page.file, root), render(page));
+const urls = pages.filter(page => !page.notFound).map(page => `  <url><loc>https://aqualen.studio/${page.file === 'index.html' ? '' : page.file}</loc></url>`).join('\n');
+await writeFile(new URL('sitemap.xml', root), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+console.log(`Built ${pages.length} static pages in ${fileURLToPath(root)}`);

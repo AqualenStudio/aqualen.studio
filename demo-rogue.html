@@ -1,335 +1,69 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Capy Survival Prototype — Aqualen Studio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Capy Survival prototype — Aqualen Studio</title>
+  <meta name="description" content="Play the archived Capy Survival browser prototype from Aqualen Studio.">
+  <meta name="theme-color" content="#101f2b">
+  <link rel="canonical" href="https://aqualen.studio/demo-rogue.html">
+  <link rel="icon" href="/assets/img/logo-512_512.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aqualen Studio">
+  <meta property="og:title" content="Capy Survival prototype — Aqualen Studio">
+  <meta property="og:description" content="Play the archived Capy Survival browser prototype from Aqualen Studio.">
+  <meta property="og:url" content="https://aqualen.studio/demo-rogue.html">
+  <meta property="og:image" content="https://aqualen.studio/assets/img/logo-512_512.webp">
+  <meta name="twitter:card" content="summary">
 
-  <!-- <link rel="stylesheet" href="/assets/site.css" /> -->
-
-  <style>
-    :root{
-      --bg:#070a12;
-      --panel: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.65);
-      --accent: rgba(120,190,255,.95);
-      --danger: rgba(255,120,120,.95);
-    }
-    html,body{
-      height:100%;
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-    }
-
-    /* ====== Site header/nav (standalone) ====== */
-    .siteHeader{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(7,10,18,.55);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .navWrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 10px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--text);
-      text-decoration:none;
-      font-weight: 800;
-      letter-spacing: .2px;
-      white-space: nowrap;
-    }
-    .logoMark{
-      width: 26px; height: 26px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.14);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(120,190,255,.35), transparent 55%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,.08), transparent 60%),
-        rgba(255,255,255,.03);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .nav a{
-      color: rgba(255,255,255,.78);
-      text-decoration:none;
-      font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      transition: .15s ease;
-    }
-    .nav a:hover{
-      color: rgba(255,255,255,.92);
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-    }
-    .nav a.active{
-      color: rgba(255,255,255,.92);
-      border-color: rgba(120,190,255,.28);
-      background: rgba(120,190,255,.10);
-    }
-    .lang{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      margin-left: 6px;
-      padding-left: 6px;
-      border-left: 1px solid rgba(255,255,255,.10);
-    }
-    .lang button{
-      cursor:pointer;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.80);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-    }
-    .lang button:hover{ border-color: rgba(255,255,255,.22); }
-    .lang button.on{
-      border-color: rgba(120,190,255,.35);
-      background: rgba(120,190,255,.14);
-      color: rgba(255,255,255,.92);
-    }
-
-    /* ====== Page wrap ====== */
-    .wrap{ max-width: 1100px; margin: 0 auto; padding: 16px; }
-
-    /* ====== Demo UI (your original) ====== */
-    .topbar{
-      display:flex; gap:12px; align-items:center; justify-content:space-between;
-      border: 1px solid var(--stroke); background: var(--panel); border-radius: 14px;
-      padding: 10px 12px; margin-bottom: 12px; backdrop-filter: blur(8px);
-    }
-    .brand{ display:flex; gap:10px; align-items:center; }
-    .pill{ font-size:12px; padding:6px 10px; border-radius: 999px; border:1px solid var(--stroke); background: rgba(0,0,0,.2); color: var(--muted); }
-    .btn{
-      cursor:pointer; user-select:none; border:1px solid var(--stroke); background: rgba(0,0,0,.25);
-      color: var(--text); padding:8px 12px; border-radius: 12px; font-size: 14px;
-    }
-    .btn:hover{ border-color: rgba(255,255,255,.24); }
-    .btn.primary{ border-color: rgba(120,190,255,.35); background: rgba(120,190,255,.12); }
-    .hud{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-start; }
-    .hud b{ color: var(--text); }
-    .hud span{ color: var(--muted); }
-
-    .stage{
-      position: relative;
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.2));
-      border-radius: 16px;
-      overflow:hidden;
-      height: min(72vh, 720px);
-    }
-    canvas{ display:block; width:100%; height:100%; }
-
-    .overlay{
-      position:absolute; inset:0; display:none;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,.55);
-      padding: 18px;
-    }
-    .overlay.show{ display:flex; }
-    .modal{
-      width:min(720px, 96vw);
-      border:1px solid var(--stroke);
-      background: rgba(10,14,24,.92);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
-    }
-    .modal h2{ margin: 6px 0 10px; font-size: 18px; }
-    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
-    .card{
-      cursor:pointer; border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      border-radius: 14px; padding: 10px;
-      min-height: 92px;
-    }
-    .card:hover{ border-color: rgba(120,190,255,.45); background: rgba(120,190,255,.10); }
-    .card .t{ font-weight: 700; margin-bottom:6px; }
-    .card .d{ color: var(--muted); font-size: 13px; line-height: 1.35; }
-
-    .help{
-      margin-top: 10px; color: var(--muted); font-size: 12px;
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
-    }
-    .bar{
-      position: relative; width: 220px; height: 10px; border-radius: 999px;
-      border: 1px solid var(--stroke); background: rgba(0,0,0,.25); overflow:hidden;
-    }
-    .bar > i{ position:absolute; inset:0; width: 50%; background: rgba(120,190,255,.85); display:block; }
-    .bar.hp > i{ background: rgba(255,120,120,.85); }
-    .touchHint{
-      position:absolute; left: 12px; bottom: 12px;
-      border: 1px dashed rgba(255,255,255,.18);
-      border-radius: 14px;
-      padding: 10px 12px;
-      color: rgba(255,255,255,.55);
-      background: rgba(0,0,0,.15);
-      font-size: 12px;
-      pointer-events:none;
-    }
-
-    /* ====== Footer ====== */
-    .siteFooter{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-      color: rgba(255,255,255,.55);
-      font-size: 12px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .siteFooter a{
-      color: rgba(255,255,255,.70);
-      text-decoration: none;
-    }
-    .siteFooter a:hover{ text-decoration: underline; }
-
-    @media (max-width: 720px){
-      .cards{ grid-template-columns: 1fr; }
-      .bar{ width: 160px; }
-      .navWrap{ gap: 8px; }
-      .nav{ gap: 6px; }
-      .nav a{ padding: 7px 8px; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preload" href="/assets/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/rpg.css">
+  <link rel="stylesheet" href="/assets/css/prototype.css">
+  <script src="/assets/js/site.js" defer></script>
 </head>
-
-<body>
-  <!-- ====== Standalone header/nav ====== -->
-  <div class="siteHeader">
-    <div class="navWrap">
-      <a class="logo" href="/index.html" aria-label="Aqualen Studio Home">
-      <img src="/assets/img/logo-512_512.webp" alt="Aqualen Studio logo" width="34" height="34" />
-      <div><div class="t1">Aqualen Studio</div></div>
-      </a>
-
-      <div class="nav" role="navigation" aria-label="Primary">
-        <a href="/index.html">Home</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/devlog.html">News / Devlog</a>
-        <a href="/demo-rogue.html" class="active">Prototype</a>
-        <a href="/about.html">About</a>
-
-        <div class="lang" aria-label="Language">
-          <button type="button" class="on" id="langEN">EN</button>
-          <button type="button" id="langJA">JA</button>
-        </div>
-      </div>
+<body class="prototype-page">
+  <a class="skip-link" href="#main"><span data-ja="本文へ移動" >Skip to content</span></a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Aqualen Studio home"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a>
+      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false"><span data-ja="メニュー" >Menu</span><span aria-hidden="true">＋</span></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="/" ><small aria-hidden="true">01</small><span data-ja="ホーム" >Home</span></a>
+        <a href="/projects.html" aria-current="page"><small aria-hidden="true">02</small><span data-ja="作品" >Games</span></a>
+        <a href="/devlog.html" ><small aria-hidden="true">03</small><span data-ja="開発日誌" >Journal</span></a>
+        <a href="/about.html" ><small aria-hidden="true">04</small><span data-ja="スタジオ" >Studio</span></a>
+        <div class="language" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="ja" aria-pressed="false">JP</button></div>
+        <a class="nav-contact" href="/about.html#contact"><span data-ja="お問い合わせ" >Get in touch</span><span class="arrow" aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-  </div>
-
-  <!-- ====== Demo content ====== -->
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="pill">Aqualen Prototype</div>
-        <div>
-          <div style="font-weight:800; letter-spacing:.2px;">Capy Survival</div>
-          <div style="font-size:12px;color:var(--muted);">Survive · Level Up · Pick 1 of 3</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:10px; align-items:center;">
-        <button class="btn" id="btnPause">Pause</button>
-        <button class="btn primary" id="btnRestart">Restart</button>
-      </div>
+  </header>
+  <main id="main" tabindex="-1">
+<section class="container prototype-heading" lang="en"><a class="back-link" href="/project-capy-strike.html">← Capy Strike / Archive</a><p class="eyebrow">THE PLAYGROUND / ARCHIVED PROTOTYPE</p><h1>Capy Survival</h1><p>A little courage. A very big forest. <span>Experimental browser build · Project on hold</span></p></section>
+<section class="container prototype-shell" aria-label="Capy Survival game" lang="en">
+  <div class="topbar"><div class="hud"><span><b>Time</b> <span id="uiTime">0:00</span></span><span><b>Level</b> <span id="uiLevel">1</span></span><span><b>Score</b> <span id="uiScore">0</span></span><span><b>Best</b> <span id="uiBest">0</span></span></div><div class="game-buttons"><button class="button button-outline" id="btnPause" disabled>Pause</button><button class="button button-outline" id="btnRestart" disabled>Restart</button></div></div>
+  <div class="game-bars"><div><span>HP <b id="uiHp">100</b></span><div class="bar hp"><i id="uiHpBar" style="width:100%"></i></div></div><div><span>XP</span><div class="bar"><i id="uiXpBar" style="width:0%"></i></div></div><span class="game-controls">WASD / Arrows · Space to dash · P / Esc to pause</span></div>
+  <div class="stage" id="stage" tabindex="0" aria-label="Game controls. Move with WASD or arrow keys. Space to dash. Escape to pause.">
+    <canvas id="game" aria-label="Capy Survival forest arena"></canvas>
+    <div class="game-notice" id="gameNotice" role="status" aria-live="polite"></div>
+    <div class="boss-banner" id="bossBanner" hidden><span>FOREST GUARDIAN</span><div class="bar"><i id="bossHp"></i></div></div>
+    <div class="touch-controls" id="touchControls" hidden><div class="joystick" id="joystick" aria-hidden="true"><i id="joystickKnob"></i></div><button type="button" class="dash-button" id="btnDash" aria-label="Dash">DASH<span id="uiDash">READY</span></button></div>
+    <div class="touchHint" id="touchHint">Drag the left stick to move · Tap DASH to evade</div>
+    <div class="overlay show" id="startScreen" role="dialog" aria-modal="true" aria-labelledby="startTitle"><div class="modal start-card"><p class="eyebrow">A SMALL FOREST ADVENTURE</p><img src="/assets/img/player.webp" alt="Capy the forest adventurer" width="192" height="192"><h2 id="startTitle">Into the clearing.</h2><p>Move, gather forest light, and choose your next ability.<br>Your bow fires automatically. Keep moving to survive.</p><div class="control-legend"><span><b>W A S D</b> / Arrows · Move</span><span><b>SPACE</b> · Dash</span><span>Touch · Left stick + Dash</span></div><button class="button button-gold" id="btnStart" disabled>Loading forest…</button><p class="load-status" id="loadStatus" role="status">Preparing the clearing.</p><noscript>This playable prototype requires JavaScript.</noscript></div></div>
+    <div class="overlay" id="pauseScreen" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><div class="modal pause-card"><p class="eyebrow">A MOMENT OF QUIET</p><h2 id="pauseTitle">Take a breath.</h2><p>The forest can wait. Your run is paused.</p><button class="button button-gold" id="btnResume">Return to the clearing</button></div></div>
+    <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="overlayTitle"><div class="modal"><p class="eyebrow">A NEW LEAF</p><h2 id="overlayTitle">Level Up — Choose one</h2><div class="cards" id="cards"></div><div class="help"><div>Your choices combine into stronger abilities.</div><div>Press <b>1 / 2 / 3</b> to choose · Tab / Enter also work</div></div></div></div>
+    <div class="overlay" id="overGame" role="dialog" aria-modal="true" aria-labelledby="endTitle"><div class="modal end-card"><p class="eyebrow">UNTIL NEXT TIME</p><h2 id="endTitle">Every journey leaves a story.</h2><div class="run-summary"><span>Survived<b id="goTime">0:00</b></span><span>Level<b id="goLevel">1</b></span><span>Score<b id="goScore">0</b></span><span>Best<b id="goBest">0</b></span></div><button class="button button-gold" id="btnAgain">A new adventure</button></div></div>
+  </div><div class="prototype-foot"><span id="buildSummary">Your abilities will appear here.</span><span>Best score saved on this device · Game interface in English</span></div>
+</section></main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div><a class="brand" href="/"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a><p data-ja="小さな謎から、世界が広がる。" class="footer-motto">A little mystery. A world of possibility.</p></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="探索" >Explore</span></p><a class="text-link" href="/projects.html"><span data-ja="作品一覧" >Our games</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/devlog.html"><span data-ja="開発日誌" >Journal</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/demo-rogue.html"><span data-ja="プレイできるプロトタイプ" >Playable prototype</span><span class="arrow" aria-hidden="true">↗</span></a></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="つながる" >Connect</span></p><a class="text-link" href="mailto:contact@aqualen.studio"><span data-ja="ビジネス・取材" >Business &amp; press</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/AqualenStudio"><span data-ja="GitHub" >GitHub</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/about.html"><span data-ja="スタジオについて" >About the studio</span><span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
-
-    <div class="topbar">
-      <div class="hud">
-        <span><b>Time</b>: <span id="uiTime">0:00</span></span>
-        <span><b>Level</b>: <span id="uiLevel">1</span></span>
-        <span><b>Score</b>: <span id="uiScore">0</span></span>
-        <span><b>Best</b>: <span id="uiBest">0</span></span>
-      </div>
-      <div style="display:flex; gap:12px; align-items:center;">
-        <div>
-          <div style="font-size:12px;color:var(--muted); margin-bottom:4px;">HP</div>
-          <div class="bar hp"><i id="uiHpBar" style="width:100%"></i></div>
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--muted); margin-bottom:4px;">XP</div>
-          <div class="bar"><i id="uiXpBar" style="width:0%"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stage" id="stage">
-      <canvas id="game"></canvas>
-      <div class="touchHint" id="touchHint">Touch & drag to move · Double-tap = dash</div>
-
-      <div class="overlay" id="overlay">
-        <div class="modal">
-          <h2 id="overlayTitle">Level Up — Choose one</h2>
-          <div class="cards" id="cards"></div>
-          <div class="help">
-            <div>Combo tip: <b>Multi-shot</b> + <b>Pierce</b> + <b>Fire rate</b></div>
-            <div style="opacity:.8;">Press <b>1/2/3</b> to pick</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="overlay" id="overGame">
-        <div class="modal">
-          <h2 style="margin-bottom:8px;">Game Over</h2>
-          <div style="color:var(--muted); margin-bottom:12px;">
-            Score: <b id="goScore">0</b> · Best: <b id="goBest">0</b>
-          </div>
-          <button class="btn primary" id="btnAgain">Play again</button>
-          <div class="help" style="justify-content:flex-start;">
-            <div>WASD / Arrows · Mobile drag · Double-tap dash</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:10px; color:var(--muted); font-size:12px;">
-      Images are optional. To use art, drop files into <code>/assets/img/</code> and set paths in <code>rogue-survivor.js</code>.
-    </div>
-  </div>
-
-  <!-- ====== Standalone footer ====== -->
-  <footer class="siteFooter">
-    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
-      <div>© <span id="yy"></span> Aqualen Studio · Joytoart Gaming Ltd (Cyprus, EU)</div>
-    </div>
+    <div class="container footer-bottom"><span>© <span data-year>2026</span> Aqualen Studio · Joytoart Gaming Ltd. · Cyprus, EU</span><div><a class="text-link" href="/privacy.html"><span data-ja="プライバシー" >Privacy</span><span class="arrow" aria-hidden="true">↗</span></a><button class="motion-toggle" type="button" aria-pressed="false" hidden><span data-ja="動きを抑える" >Reduce motion</span></button><a href="#main" class="back-top" aria-label="Back to top">↑</a></div></div>
   </footer>
-
-  <script>
-    // year
-    document.getElementById("yy").textContent = new Date().getFullYear();
-
-    // simple language toggle (optional placeholder)
-    const enBtn = document.getElementById("langEN");
-    const jaBtn = document.getElementById("langJA");
-    enBtn.addEventListener("click", ()=>{ enBtn.classList.add("on"); jaBtn.classList.remove("on"); });
-    jaBtn.addEventListener("click", ()=>{ jaBtn.classList.add("on"); enBtn.classList.remove("on"); });
-  </script>
-
-  <script src="/assets/js/rogue-survivor.js"></script>
+  <dialog class="media-dialog" aria-labelledby="media-title"><div class="dialog-bar"><h2 id="media-title">Inkighter · Official trailer</h2><button type="button" class="dialog-close" aria-label="Close video">×</button></div><div class="video-mount"></div><p><a class="text-link" href="https://www.youtube.com/watch?v=JokkS_4qgRA"><span data-ja="YouTubeで見る" >Watch on YouTube</span><span class="arrow" aria-hidden="true">↗</span></a></p></dialog>
+  <script type="module" src="/assets/js/rogue-survivor.js"></script>
 </body>
 </html>

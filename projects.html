@@ -1,92 +1,53 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projects — Aqualen Studio</title>
-  <meta name="description" content="Explore Stellum, Inkighter, Capy Strike and other projects from Aqualen Studio." />
-  <link rel="canonical" href="https://aqualen.studio/projects.html" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Games — Aqualen Studio</title>
+  <meta name="description" content="Explore the worlds of Aqualen Studio: Stellum, Inkighter, Capy Strike and our long-term projects.">
+  <meta name="theme-color" content="#101f2b">
+  <link rel="canonical" href="https://aqualen.studio/projects.html">
+  <link rel="icon" href="/assets/img/logo-512_512.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aqualen Studio">
+  <meta property="og:title" content="Games — Aqualen Studio">
+  <meta property="og:description" content="Explore the worlds of Aqualen Studio: Stellum, Inkighter, Capy Strike and our long-term projects.">
+  <meta property="og:url" content="https://aqualen.studio/projects.html">
+  <meta property="og:image" content="https://aqualen.studio/assets/img/logo-512_512.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preload" href="/assets/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/rpg.css">
+
+  <script src="/assets/js/site.js" defer></script>
 </head>
-<body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="/index.html">
-      <img src="/assets/img/logo-512_512.webp" alt="Aqualen Studio logo" width="34" height="34" />
-      <div><div class="t1">Aqualen Studio</div></div>
-    </a>
-    <nav class="navlinks">
-      <a data-nav href="/index.html" data-i18n="nav_home">Home</a>
-      <a data-nav href="/projects.html" data-i18n="nav_projects">Projects</a>
-      <a data-nav href="/devlog.html" data-i18n="nav_devlog">News / Devlog</a>
-      <a data-nav href="/demo-rogue.html" data-i18n="nav_demo">Play Demo</a>
-      <a data-nav href="/about.html" data-i18n="nav_about">About</a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="ja" aria-pressed="false">JA</button>
-      </div>
-    </nav>
-  </div>
-</header>
+<body class="paper-page">
+  <a class="skip-link" href="#main"><span data-ja="本文へ移動" >Skip to content</span></a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Aqualen Studio home"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a>
+      <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false"><span data-ja="メニュー" >Menu</span><span aria-hidden="true">＋</span></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="/" ><small aria-hidden="true">01</small><span data-ja="ホーム" >Home</span></a>
+        <a href="/projects.html" aria-current="page"><small aria-hidden="true">02</small><span data-ja="作品" >Games</span></a>
+        <a href="/devlog.html" ><small aria-hidden="true">03</small><span data-ja="開発日誌" >Journal</span></a>
+        <a href="/about.html" ><small aria-hidden="true">04</small><span data-ja="スタジオ" >Studio</span></a>
+        <div class="language" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="ja" aria-pressed="false">JP</button></div>
+        <a class="nav-contact" href="/about.html#contact"><span data-ja="お問い合わせ" >Get in touch</span><span class="arrow" aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1"><section class="page-heading container"><p class="eyebrow">AQUALEN STUDIO / OUR GAMES</p><h1 data-ja="私たちがつくる世界。" >A collection of worlds.</h1><div class="heading-foot"><p data-ja="開発中の作品、発売中のゲーム、そして創作の実験。" >Current creations, released games, and experiments along the way.</p><span class="heading-star" aria-hidden="true">✧</span></div></section><section class="container section-bottom"><div class="filter-bar" role="group" aria-label="Filter games" hidden><button type="button" data-filter="all" aria-pressed="true"><span data-ja="すべて" >All projects</span></button><button type="button" data-filter="development" aria-pressed="false"><span data-ja="開発中" >In development</span></button><button type="button" data-filter="released" aria-pressed="false"><span data-ja="発売中" >Released</span></button><button type="button" data-filter="archive" aria-pressed="false"><span data-ja="開発休止中" >On hold</span></button><span class="filter-count" aria-live="polite">4</span></div><div class="games-grid catalogue"><a href="/project-stellum.html" class="game-card stellum-card" data-status="development"><div class="game-art stellum-art"><div class="orbit" aria-hidden="true"><i></i><i></i><i></i><span>✦</span></div><span class="art-index">AQUALEN / CURRENT PROJECT</span><span class="stellum-word">Stellum<span class="word-rule"></span></span><span class="art-caption"><span data-ja="開発中" >In development</span></span></div><div class="game-meta"><div><p class="eyebrow">01 / <span data-ja="現在のプロジェクト" >Current project</span></p><h3>Stellum</h3><p><span data-ja="Aqualen Studioが現在注力する、新たなプロジェクト。" >Our current focus. A new project taking shape at Aqualen Studio.</span></p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a><a href="/project-inkighter.html" class="game-card inkighter-card" data-status="released"><div class="game-art"><img src="/assets/img/hero-03.webp" alt="Inkighter illustrated swordsman in a bamboo hat" width="1920" height="1084" loading="lazy"><span class="status on-image"><span data-ja="発売中 · Steam" >Released · Steam</span></span></div><div class="game-meta"><div><p class="eyebrow">02 / <span data-ja="発売中の作品" >Released work</span></p><h3>Inkighter</h3><p data-ja="墨と意志から生まれる、アクション体験。" >An action experience forged from ink and resolve.</p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a><a href="/project-capy-strike.html" class="game-card" data-status="archive"><div class="game-art"><img src="/assets/img/project-capy-strike-02.webp" alt="Capy Strike capybara standing on a crocodile beside ancient ruins" width="1920" height="1080" loading="lazy"><span class="status on-image"><span data-ja="開発休止中" >On hold</span></span></div><div class="game-meta"><div><p class="eyebrow">03 / <span data-ja="プロジェクトアーカイブ" >Project archive</span></p><h3>Capy Strike</h3><p data-ja="現在は開発休止中。将来的に再開する可能性があります。" >On hold, with the possibility of a future return.</p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a><a href="/project-switch.html" class="game-card" data-status="development"><div class="game-art future-art"><span class="future-mark" aria-hidden="true">✧</span><span><span data-ja="その先の地平へ" >Beyond the horizon</span></span></div><div class="game-meta"><div><p class="eyebrow">04 / <span data-ja="長期プロジェクト" >Long-term project</span></p><h3 data-ja="未来に向けて" >Further ahead</h3><p data-ja="スタジオの長期的な取り組み。" >A place for the studio’s longer-horizon work.</p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a></div></section><section class="contact-band container"><div><p class="eyebrow">LET’S CONNECT</p><h2 data-ja="新しい出会いは、ひとつの対話から。" >Good things start with a conversation.</h2></div><a class="button button-gold" href="mailto:contact@aqualen.studio"><span data-ja="お問い合わせ" >Get in touch</span><span class="arrow" aria-hidden="true">↗</span></a></section></main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div><a class="brand" href="/"><span class="studio-seal" aria-hidden="true"><img src="/assets/img/logo-mark.webp" alt="" width="48" height="48"></span><span class="wordmark">AQUALEN<small>INDEPENDENT GAME STUDIO</small></span></a><p data-ja="小さな謎から、世界が広がる。" class="footer-motto">A little mystery. A world of possibility.</p></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="探索" >Explore</span></p><a class="text-link" href="/projects.html"><span data-ja="作品一覧" >Our games</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/devlog.html"><span data-ja="開発日誌" >Journal</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/demo-rogue.html"><span data-ja="プレイできるプロトタイプ" >Playable prototype</span><span class="arrow" aria-hidden="true">↗</span></a></div>
+      <div class="footer-column"><p class="eyebrow"><span data-ja="つながる" >Connect</span></p><a class="text-link" href="mailto:contact@aqualen.studio"><span data-ja="ビジネス・取材" >Business &amp; press</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/AqualenStudio"><span data-ja="GitHub" >GitHub</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="/about.html"><span data-ja="スタジオについて" >About the studio</span><span class="arrow" aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span data-year>2026</span> Aqualen Studio · Joytoart Gaming Ltd. · Cyprus, EU</span><div><a class="text-link" href="/privacy.html"><span data-ja="プライバシー" >Privacy</span><span class="arrow" aria-hidden="true">↗</span></a><button class="motion-toggle" type="button" aria-pressed="false" hidden><span data-ja="動きを抑える" >Reduce motion</span></button><a href="#main" class="back-top" aria-label="Back to top">↑</a></div></div>
+  </footer>
+  <dialog class="media-dialog" aria-labelledby="media-title"><div class="dialog-bar"><h2 id="media-title">Inkighter · Official trailer</h2><button type="button" class="dialog-close" aria-label="Close video">×</button></div><div class="video-mount"></div><p><a class="text-link" href="https://www.youtube.com/watch?v=JokkS_4qgRA"><span data-ja="YouTubeで見る" >Watch on YouTube</span><span class="arrow" aria-hidden="true">↗</span></a></p></dialog>
 
-<main class="container">
-  <section class="page-title">
-    <div class="kicker">AQUALEN</div>
-    <h1 data-i18n="nav_projects">Projects</h1>
-    <p class="muted">Each project has its own page for platform review.</p>
-  </section>
-
-  <div class="spacer"></div>
-
-  <div class="grid3">
-    <a class="card project" href="/project-stellum.html">
-      <div class="thumb stellum-thumb" aria-hidden="true"><span>STELLUM</span></div>
-      <div class="meta">
-        <div style="font-weight:700" data-i18n="p_stellum_title">Stellum</div>
-        <div class="muted small" data-i18n="p_stellum_desc">Current project. Details will be revealed as development progresses.</div>
-        <div class="badges"><span class="badge" data-i18n="badge_current">Current</span></div>
-      </div>
-    </a>
-
-    <a class="card project" href="/project-inkighter.html">
-      <div class="thumb"><img src="/assets/img/project-inkighter.webp" alt="Inkighter" loading="lazy"></div>
-      <div class="meta">
-        <div style="font-weight:700" data-i18n="p_inkighter_title">Inkighter (Steam)</div>
-        <div class="muted small" data-i18n="p_inkighter_desc">Published. A stylized action experience forged from ink and resolve.</div>
-        <div class="badges"><span class="badge" data-i18n="badge_published">Published</span><span class="badge">Steam</span></div>
-      </div>
-    </a>
-
-    <a class="card project" href="/project-capy-strike.html">
-      <div class="thumb"><img src="/assets/img/project-capy-strike-02.webp" alt="Capy Strike" loading="lazy"></div>
-      <div class="meta">
-        <div style="font-weight:700" data-i18n="p_capy_title">Capy Strike (iOS)</div>
-        <div class="muted small" data-i18n="p_capy_desc">On hold. This project may return in the future.</div>
-        <div class="badges"><span class="badge" data-i18n="badge_on_hold">On hold</span><span class="badge">iOS</span></div>
-      </div>
-    </a>
-
-    <a class="card project" href="/project-switch.html">
-      <div class="thumb"><img src="/assets/img/about-ink-01.webp" alt="Console" loading="lazy"></div>
-      <div class="meta">
-        <div style="font-weight:700" data-i18n="p_switch_title">Long-term Project</div>
-        <div class="muted small" data-i18n="p_switch_desc">A long-arc project heading toward Switch-class platforms.</div>
-        <div class="badges"><span class="badge" data-i18n="badge_future">Future</span><span class="badge">Console</span></div>
-      </div>
-    </a>
-  </div>
-
-  <div class="hr"></div>
-  
-</main>
-
-<footer>
-  <div class="container" style="padding-top:24px">
-    <div class="muted small">Email: <a href="mailto:contact@aqualen.studio">contact@aqualen.studio</a></div>
-    <div class="muted small" style="margin-top:8px">Aqualen Studio · Joytoart Gaming Ltd. (Cyprus, EU)</div>
-  </div>
-</footer>
-
-<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

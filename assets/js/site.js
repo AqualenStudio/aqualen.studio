@@ -1,141 +1,127 @@
 (() => {
-  const LANG_KEY = "aqualen_lang";
-
-  const dict = {
-    en: {
-      nav_home: "Home",
-      nav_projects: "Projects",
-      nav_devlog: "News / Devlog",
-      nav_demo: "Prototype",
-      nav_about: "About",
-      nav_contact: "Contact",
-
-      hero_kicker: "AQUALEN STUDIO",
-      hero_title: "Depth Over Noise",
-      hero_desc:
-        "Eastern minimalism, mysterious worlds.",
-      cta_primary: "View Projects",
-      cta_secondary: "Play Prototype",
-      cta_contact: "Contact",
-
-      sec_feat: "Featured",
-      sec_feat_desc: "Stellum, selected released work, and the studio's development log.",
-      sec_latest: "Latest",
-      sec_latest_desc: "Short updates, dev notes, release milestones.",
-
-      featured_stellum: "Aqualen Studio's current project. More details will be revealed as development progresses.",
-      p_inkighter_title: "Inkighter (Steam)",
-      p_inkighter_desc: "Published. A stylized action experience forged from ink and resolve.",
-      p_stellum_title: "Stellum",
-      p_stellum_desc: "Current project. Details will be revealed as development progresses.",
-      p_capy_title: "Capy Strike (iOS)",
-      p_capy_desc: "On hold. This project may return in the future.",
-      p_switch_title: "Long-term Project",
-      p_switch_desc: "A longer-horizon project kept on the studio's public roadmap.",
-
-      badge_published: "Published",
-      badge_current: "Current",
-      badge_on_hold: "On hold",
-      badge_soon: "Launching soon",
-      badge_future: "Long-term",
-
-      footer_line1: "© " + new Date().getFullYear() + " Aqualen Studio. All rights reserved.",
-      footer_line2: "Aqualen Studio is a label under Joytoart Gaming Ltd. (Cyprus, EU).",
-      footer_privacy: "Privacy",
-    },
-    ja: {
-      nav_home: "ホーム",
-      nav_projects: "プロジェクト",
-      nav_devlog: "ニュース / 開発ログ",
-      nav_demo: "プロトタイプ",
-      nav_about: "会社情報",
-      nav_contact: "連絡先",
-
-      hero_kicker: "AQUALEN STUDIO",
-      hero_title: "海、遺跡、静かなカタストロフ",
-      hero_desc:
-        "Joytoart Gaming Ltd.（キプロス/EU）傘下のインディーレーベル。東洋ミニマルと神秘性、そしてキレのあるゲームシステム。",
-      cta_primary: "プロジェクトを見る",
-      cta_secondary: "プロトタイプを遊ぶ",
-      cta_contact: "お問い合わせ",
-
-      sec_feat: "注目",
-      sec_feat_desc: "Stellum、リリース済み作品、そして開発ログ。",
-      sec_latest: "最新情報",
-      sec_latest_desc: "短いアップデート、開発メモ、リリース進捗。",
-
-      featured_stellum: "Aqualen Studioの現在のプロジェクト。開発の進展に合わせて詳細を公開します。",
-      p_inkighter_title: "Inkighter（Steam）",
-      p_inkighter_desc: "配信中。インクと意志で切り拓くスタイライズド・アクション。",
-      p_stellum_title: "Stellum",
-      p_stellum_desc: "現在開発中のプロジェクト。詳細は開発の進展に合わせて公開します。",
-      p_capy_title: "Capy Strike（iOS）",
-      p_capy_desc: "保留中。将来的に再開する可能性があります。",
-      p_switch_title: "長期プロジェクト",
-      p_switch_desc: "スタジオの公開ロードマップにある長期プロジェクト。",
-
-      badge_published: "配信中",
-      badge_current: "開発中",
-      badge_on_hold: "保留中",
-      badge_soon: "近日",
-      badge_future: "長期計画",
-
-      footer_line1: "© " + new Date().getFullYear() + " Aqualen Studio. All rights reserved.",
-      footer_line2: "Aqualen Studio is a label under Joytoart Gaming Ltd.（キプロス/EU）",
-      footer_privacy: "プライバシー",
-    }
-  };
-
-  function getLang(){
-    const saved = localStorage.getItem(LANG_KEY);
-    if(saved === "ja" || saved === "en") return saved;
-    // default: English (you can change to ja if you prefer)
-    return "en";
+  'use strict';
+  // 浏览器存储被禁用时，导航和页面内容仍然工作。
+  const read = key => { try { return localStorage.getItem(key); } catch { return null; } };
+  const save = (key, value) => { try { localStorage.setItem(key, value); } catch { /* 会话内设置仍然有效。 */ } };
+  const root = document.documentElement;
+  const translated = [...document.querySelectorAll('[data-ja]')];
+  const original = new Map(translated.map(el => [el, el.textContent]));
+  const languageButtons = document.querySelectorAll('[data-lang]');
+  function applyLanguage(lang) {
+    root.lang = lang;
+    translated.forEach(el => { el.textContent = lang === 'ja' ? el.dataset.ja : original.get(el); });
+    languageButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
   }
+  languageButtons.forEach(button => button.addEventListener('click', () => {
+    const lang = button.dataset.lang;
+    save('aqualen_lang', lang);
+    applyLanguage(lang);
+  }));
+  applyLanguage(read('aqualen_lang') === 'ja' ? 'ja' : 'en');
+  document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  function setLang(lang){
-    localStorage.setItem(LANG_KEY, lang);
-    applyLang(lang);
-  }
-
-  function applyLang(lang){
-    document.documentElement.lang = lang;
-    const table = dict[lang] || dict.en;
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const k = el.getAttribute("data-i18n");
-      if(!k) return;
-      if(table[k] != null) el.textContent = table[k];
-    });
-
-    // aria labels for buttons or links
-    document.querySelectorAll("[data-i18n-aria]").forEach(el => {
-      const k = el.getAttribute("data-i18n-aria");
-      if(table[k] != null) el.setAttribute("aria-label", table[k]);
-    });
-
-    // set pressed state
-    document.querySelectorAll(".lang button").forEach(btn=>{
-      btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
-    });
-  }
-
-  function markActiveNav(){
-    const path = location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".navlinks a[data-nav]").forEach(a=>{
-      const target = a.getAttribute("href");
-      const t = target.split("/").pop();
-      if(t === path) a.setAttribute("aria-current", "page");
-      else a.removeAttribute("aria-current");
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // bind language buttons
-    document.querySelectorAll(".lang button[data-lang]").forEach(btn=>{
-      btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
-    });
-
-    markActiveNav();
-    applyLang(getLang());
+  // 移动导航：支持 Escape、点选链接与桌面断点恢复。
+  const menu = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.primary-nav');
+  const narrow = matchMedia('(max-width: 800px)');
+  const closeMenu = () => { nav.classList.remove('is-open'); menu.setAttribute('aria-expanded', 'false'); };
+  menu.addEventListener('click', () => {
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
   });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); }
+  });
+  narrow.addEventListener('change', closeMenu);
+  document.body.classList.add('menu-ready');
+  window.addEventListener('pageshow', closeMenu);
+
+  // 作品状态筛选只增强展示；无脚本时仍显示所有作品。
+  const filters = document.querySelector('.filter-bar');
+  if (filters) {
+    filters.hidden = false;
+    const cards = [...document.querySelectorAll('.catalogue [data-status]')];
+    const buttons = filters.querySelectorAll('[data-filter]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      let visible = 0;
+      cards.forEach(card => {
+        card.hidden = button.dataset.filter !== 'all' && card.dataset.status !== button.dataset.filter;
+        if (!card.hidden) visible++;
+      });
+      filters.querySelector('.filter-count').textContent = String(visible);
+    }));
+  }
+
+  // 原生 dialog 管理焦点；关闭弹窗即卸载视频，阻止后台继续播放。
+  const dialog = document.querySelector('.media-dialog');
+  const mount = dialog.querySelector('.video-mount');
+  let videoTrigger = null;
+  if (typeof dialog.showModal === 'function') {
+    document.querySelectorAll('[data-video]').forEach(trigger => trigger.addEventListener('click', event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      videoTrigger = trigger;
+      const frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/JokkS_4qgRA?autoplay=1&rel=0';
+      frame.title = 'Inkighter official trailer';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      mount.replaceChildren(frame);
+      dialog.showModal();
+    }));
+    dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      const r = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom)) dialog.close();
+    });
+    dialog.addEventListener('close', () => { mount.replaceChildren(); videoTrigger?.focus(); });
+  }
+
+  // 系统减少动态效果优先。自定义偏好跨页面保留。
+  const systemMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const motionButton = document.querySelector('.motion-toggle');
+  let userReduced = read('aqualen_reduce_motion') === 'true';
+  let observer;
+  function applyMotion() {
+    const reduced = systemMotion.matches || userReduced;
+    root.classList.toggle('motion-reduced', reduced);
+    motionButton.setAttribute('aria-pressed', String(reduced));
+    motionButton.disabled = systemMotion.matches;
+    motionButton.title = systemMotion.matches ? 'Reduced motion follows your system preference.' : '';
+    if (reduced) {
+      observer?.disconnect();
+      document.querySelectorAll('.reveal-pending').forEach(el => el.classList.remove('reveal-pending'));
+    }
+  }
+  motionButton.hidden = false;
+  motionButton.addEventListener('click', () => { userReduced = !userReduced; save('aqualen_reduce_motion', String(userReduced)); applyMotion(); });
+  systemMotion.addEventListener('change', applyMotion);
+  applyMotion();
+  // 短促纹章反馈：尊重减少动效，不拦截链接，不影响游戏操作。
+  document.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || root.classList.contains('motion-reduced')) return;
+    if (!(event.target instanceof Element) || event.target.closest('.prototype-shell')) return;
+    if (!event.target.closest('.button, .primary-nav a, .filter-bar button, .language button')) return;
+    const spark = document.createElement('span');
+    spark.className = 'ui-spark';
+    spark.setAttribute('aria-hidden', 'true');
+    spark.style.left = `${event.clientX}px`;
+    spark.style.top = `${event.clientY}px`;
+    document.body.append(spark);
+    setTimeout(() => spark.remove(), 500);
+  });
+  if (!root.classList.contains('motion-reduced') && 'IntersectionObserver' in window) {
+    // 只对首屏以下的区块应用入场，确保主要内容立即可见。
+    observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.remove('reveal-pending'); observer.unobserve(entry.target); }
+    }), { threshold: 0.08 });
+    document.querySelectorAll('.section-heading, .home-games, .film-grid, .studio-copy, .news-row').forEach(el => {
+      el.dataset.reveal = '';
+      if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('reveal-pending'); observer.observe(el); }
+    });
+    document.body.classList.add('reveal-ready');
+  }
 })();
