@@ -3,8 +3,27 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { constrain, damagePlayer, gainXP, segmentHits } from '../assets/js/capy-core.mjs';
+import { drawPlayerHealth } from '../assets/js/capy-render.mjs';
 let passed = 0;
 function test(name, run) { run(); passed++; console.log(`PASS ${name}`); }
+test('头顶 HP：血量比例、低血量颜色与最大血量升级', () => {
+  const calls = [];
+  const ctx = { save(){}, restore(){}, strokeRect(){}, fillRect(...args){calls.push({color:this.fillStyle,args});}, fillText(text){calls.push({text});} };
+  drawPlayerHealth(ctx, {hp:30,hpMax:120}, 160, 180, 320, 540);
+  assert.ok(calls.some(c=>c.text==='HP 30 / 120'));
+  assert.ok(calls.some(c=>c.color==='#ed947c' && c.args[2]===19.5));
+  calls.length=0;
+  drawPlayerHealth(ctx, {hp:120,hpMax:120}, 160, 180, 320, 540);
+  assert.ok(calls.some(c=>c.color==='#b7d598' && c.args[2]===78));
+});
+test('头顶 HP：边界保持可见，死亡不出现负宽度', () => {
+  const rects = [];
+  const ctx = {save(){},restore(){},strokeRect(){},fillText(){},fillRect(...args){rects.push(args);}};
+  for (const x of [-50,400]) {
+    drawPlayerHealth(ctx,{hp:-5,hpMax:100},x,-20,320,540);
+  }
+  assert.ok(rects.every(([x,y,w,h])=>x>=0 && y>=0 && w>=0 && x+w<=320 && y+h<=540));
+});
 test('护盾受击后提供保护，不会连续帧清空', () => {
   const p = { hp: 100, shield: 3, invulnerable: 0 };
   assert.equal(damagePlayer(p, 10), 'shield');

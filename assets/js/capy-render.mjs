@@ -1,5 +1,21 @@
 import { WORLD, clamp } from './capy-core.mjs';
 
+// 以屏幕像素绘制，避免手机镜头缩放后血条和数字过小；最后绘制以免被敌人遮挡。
+export function drawPlayerHealth(ctx, player, headX, headY, width, height) {
+  const hpMax = Math.max(1, player.hpMax);
+  const hp = clamp(player.hp, 0, hpMax), ratio = hp / hpMax;
+  const x = clamp(headX - 45, 4, Math.max(4, width - 94));
+  const y = clamp(headY - 38, 4, Math.max(4, height - 34));
+  ctx.save();
+  ctx.fillStyle = 'rgba(16,35,27,.92)'; ctx.fillRect(x, y, 90, 30);
+  ctx.strokeStyle = '#d6c496'; ctx.lineWidth = 1; ctx.strokeRect(x + .5, y + .5, 89, 29);
+  ctx.font = '600 12px "Segoe UI", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#fff3d1'; ctx.fillText(`HP ${Math.ceil(hp)} / ${Math.ceil(hpMax)}`, x + 45, y + 10);
+  ctx.fillStyle = '#475348'; ctx.fillRect(x + 6, y + 20, 78, 5);
+  ctx.fillStyle = ratio <= .3 ? '#ed947c' : '#b7d598'; ctx.fillRect(x + 6, y + 20, 78 * ratio, 5);
+  ctx.restore();
+}
+
 // 固定世界、响应式镜头：手机裁切视野而不是缩小角色或改变碰撞区域。
 export async function createRenderer(canvas, stage) {
   const ctx = canvas.getContext('2d', { alpha: false });
@@ -61,7 +77,7 @@ export async function createRenderer(canvas, stage) {
   }
   let idleFrame = '';
   function render(game, reduced) {
-    const signature = `${game.mode}:${view.width}:${view.height}:${reduced}`;
+    const signature = `${game.mode}:${view.width}:${view.height}:${reduced}:${game.player.hp}:${game.player.hpMax}`;
     if (game.mode !== 'play' && idleFrame === signature) return;
     idleFrame = game.mode === 'play' ? '' : signature;
     const { player, enemies, boss, bullets, gems, particles, trails, time, mode } = game;
@@ -69,11 +85,14 @@ export async function createRenderer(canvas, stage) {
     const visibleWidth = width / scale, visibleHeight = height / scale;
     view.x = clamp(player.x - visibleWidth / 2, 0, WORLD.width - visibleWidth);
     const cameraY = clamp(player.y - visibleHeight * .58, 0, WORLD.height - visibleHeight);
+    const shaking = !reduced && game.shake > 0 && mode === 'play';
+    const shakeX = shaking ? Math.sin(time * 105) * game.shake : 0;
+    const shakeY = shaking ? Math.cos(time * 89) * game.shake * .6 : 0;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = '#233b30'; ctx.fillRect(0, 0, width, height);
     ctx.save();
     ctx.scale(scale, scale); ctx.translate(-view.x, -cameraY);
-    if (!reduced && game.shake > 0 && mode === 'play') ctx.translate(Math.sin(time * 105) * game.shake, Math.cos(time * 89) * game.shake * .6);
+    ctx.translate(shakeX, shakeY);
     if (images['bg-paper']) ctx.drawImage(images['bg-paper'].image, 0, 0, WORLD.width, WORLD.height);
     else { ctx.fillStyle = '#81915c'; ctx.fillRect(0, 0, WORLD.width, WORLD.height); }
     // 柔和林间光束与远景遮罩，不使用全屏闪烁。
@@ -149,6 +168,13 @@ export async function createRenderer(canvas, stage) {
     const vignette = ctx.createRadialGradient(width / 2, height / 2, height * .2, width / 2, height / 2, Math.max(width, height) * .7);
     vignette.addColorStop(0, 'rgba(13,35,26,0)'); vignette.addColorStop(1, 'rgba(13,35,26,.3)');
     ctx.fillStyle = vignette; ctx.fillRect(0, 0, width, height);
+    // 依据裁切后角色的实际头顶定位；血条不随左右朝向翻转，也不随受击闪白。
+    const crop = images.player?.crop;
+    const spriteHeight = crop ? 76 * crop.h / crop.w : 48;
+    const bob = mode === 'play' && !reduced ? Math.sin(time * 14 + player.x) * player.moving * 2 : 0;
+    const headX = (player.x - view.x + shakeX) * scale;
+    const headY = (player.y + bob + 22 - spriteHeight - cameraY + shakeY) * scale;
+    drawPlayerHealth(ctx, player, headX, headY, width, height);
   }
   return { render, missing };
 }
